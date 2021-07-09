@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import fetchCrypto from "./Data/CryptoApi";
 import CryptoRow from "./CryptoRow";
+import Favourites from "../Favourites/Favourites";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const CryptoList = () => {
   const [crypto, setCrypto] = useState();
@@ -8,7 +10,7 @@ const CryptoList = () => {
 
   useEffect(() => {
     fetchCrypto().then((data) => {
-      setCrypto(data);
+      setCrypto(Object.values(data));
       setLoading(true);
     });
   }, []);
@@ -29,7 +31,10 @@ const CryptoList = () => {
           </thead>
           <tbody>
             {loading === false ? (
-              <div class="spinner-border text-primary" role="status"></div>
+              <div
+                class="spinner-border text-primary position-absolute end-50 mt-5"
+                role="status"
+              ></div>
             ) : (
               <CryptoRow crypto={crypto} />
             )}
@@ -39,22 +44,5 @@ const CryptoList = () => {
     </div>
   );
 };
-
-// {crypto.map((currency) => {
-//   return (
-//     <tr key={currency.rank}>
-//       <th scope="row">{currency.rank}</th>
-//       <td>
-//         {currency.name}({currency.symbol})
-//       </td>
-//       <td>{currency.quotes.USD.price}</td>
-//       <td>{currency.quotes.USD.percent_change_24h}</td>
-//       <td>{currency.quotes.USD.percent_change_7d}</td>
-//       <td>
-//         <FontAwesomeIcon icon={["fas", "faa-star"]} />
-//       </td>
-//     </tr>
-//   );
-// })}
 
 export default CryptoList;

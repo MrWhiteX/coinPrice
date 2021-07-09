@@ -10,8 +10,16 @@ const CryptoRow = (props) => {
   });
 
   const handleFavouriteClick = (currency) => {
-    console.log(currency);
-    localStorage.setItem(`${currency.symbol}`, JSON.stringify(currency));
+    const saveCurrencyToLocalStorage = currency;
+    let dataFromLocalStorage = [];
+    if (localStorage.getItem("favourite") != null) {
+      dataFromLocalStorage = JSON.parse(localStorage.getItem("favourite"));
+      dataFromLocalStorage.push(saveCurrencyToLocalStorage);
+      localStorage.setItem("favourite", JSON.stringify(dataFromLocalStorage));
+    } else {
+      dataFromLocalStorage.push(saveCurrencyToLocalStorage);
+      localStorage.setItem("favourite", JSON.stringify(dataFromLocalStorage));
+    }
   };
 
   return (
