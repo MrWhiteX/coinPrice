@@ -10,4 +10,17 @@ const fetchCrypto = () => {
     });
 };
 
-export default fetchCrypto;
+
+const fetchInfo = () => {
+  return fetch(`https://api.coinpaprika.com/v1/global`)
+    .then((response) => response.json())
+    .then((data) => {
+      return data
+    });
+};
+
+
+
+
+export  {fetchCrypto,fetchInfo};
+
