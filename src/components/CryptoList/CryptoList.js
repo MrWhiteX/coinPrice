@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import fetchCrypto from "./Data/CryptoApi";
+import {fetchCrypto} from "./Data/CryptoApi";
 import CryptoRow from "./CryptoRow";
 import Favourites from "../Favourites/Favourites";
 import { BrowserRouter as Router, Route } from "react-router-dom";
