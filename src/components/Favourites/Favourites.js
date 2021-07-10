@@ -1,8 +1,15 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
+
+
+
 const Favourites = () => {
+
+  const [realtime,setRealtime] = useState(false);
+
+
   const favouriteCrypto = JSON.parse(localStorage.getItem("favourite"));
   const handleRemoveFavourite = (currency, index) => {
      console.log(index);  
@@ -10,7 +17,7 @@ const Favourites = () => {
      localStorage.setItem('favourite', JSON.stringify(favouriteCrypto))
      console.log(favouriteCrypto.length)
      
-
+    setRealtime(!realtime)
     if (favouriteCrypto.length === 0){
       localStorage.clear();
 
@@ -18,6 +25,11 @@ const Favourites = () => {
 
   };
 
+useEffect(()=> {
+
+console.log("useeff")
+
+},[realtime]);
 
 
 
