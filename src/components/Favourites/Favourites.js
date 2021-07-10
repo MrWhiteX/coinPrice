@@ -6,8 +6,6 @@ const Favourites = () => {
   const favouriteCrypto = JSON.parse(localStorage.getItem("favourite"));
   const handleRemoveFavourite = (currency, index) => {
      console.log(index);  
-     const chuj = localStorage.getItem("favourite");
-     console.log(chuj);
      favouriteCrypto.splice(index, 1);
      localStorage.setItem('favourite', JSON.stringify(favouriteCrypto))
      console.log(favouriteCrypto.length)
