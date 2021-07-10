@@ -1,15 +1,39 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const Favourites = () => {
-  const favouriteCrypto = JSON.parse(localStorage.getItem("favourite"));
 
+
+
+const Favourites = () => {
+
+  const [realtime,setRealtime] = useState(false);
+
+
+  const favouriteCrypto = JSON.parse(localStorage.getItem("favourite"));
   const handleRemoveFavourite = (currency, index) => {
-    console.log(index);
-    localStorage.removeItem(`favourite[${0}]`);
+     console.log(index);  
+     favouriteCrypto.splice(index, 1);
+     localStorage.setItem('favourite', JSON.stringify(favouriteCrypto))
+     console.log(favouriteCrypto.length)
+     
+    setRealtime(!realtime)
+    if (favouriteCrypto.length === 0){
+      localStorage.clear();
+
+    }
+
   };
 
+useEffect(()=> {
+
+console.log("useeff")
+
+},[realtime]);
+
+
+
+  
   return (
     <div className="container mt-5">
       <div className="table-responsive">
