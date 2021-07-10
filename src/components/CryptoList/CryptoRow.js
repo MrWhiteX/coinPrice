@@ -26,7 +26,7 @@ const CryptoRow = (props) => {
     <>
       {sortedCrypto.map((currency) => {
         return (
-          <tr key={currency.rank}>
+          <tr key={currency.id}>
             <th scope="row">{currency.rank}</th>
             <td>
               {currency.name}({currency.symbol})
