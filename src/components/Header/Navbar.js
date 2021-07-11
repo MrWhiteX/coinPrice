@@ -34,9 +34,6 @@ const Navbar = () => {
                 <Link to="/favourites" className="nav-link active">
                   Favourites
                 </Link>
-                {/* <a className="nav-link active" aria-current="page" href="#">
-                 
-                </a> */}
               </li>
             </ul>
             <form className="d-flex ">

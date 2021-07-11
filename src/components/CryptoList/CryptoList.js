@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {fetchCrypto} from "./Data/CryptoApi";
+import { fetchCrypto } from "./Data/CryptoApi";
 import CryptoRow from "./CryptoRow";
 import Favourites from "../Favourites/Favourites";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -8,11 +8,26 @@ const CryptoList = () => {
   const [crypto, setCrypto] = useState();
   const [loading, setLoading] = useState(false);
 
+  // useEffect(() => {
+  //   fetchCrypto().then((data) => {
+  //     setCrypto(Object.values(data));
+  //     setLoading(true);
+  //     console.log("ponowny render");
+  //   });
+  // }, []);
+
   useEffect(() => {
     fetchCrypto().then((data) => {
       setCrypto(Object.values(data));
       setLoading(true);
     });
+    const intervalID = setInterval(() => {
+      fetchCrypto().then((data) => {
+        setCrypto(Object.values(data));
+      });
+    }, 3000);
+
+    return () => clearInterval(intervalID);
   }, []);
 
   return (
