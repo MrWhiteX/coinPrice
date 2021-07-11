@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 const CryptoRow = (props) => {
   const { crypto } = props;
-
   const sortedCrypto = crypto.sort(function (a, b) {
     return a.rank - b.rank;
   });
+
+  const favouriteCrypto = JSON.parse(localStorage.getItem("favourite"));
 
   const handleFavouriteClick = (currency) => {
     const saveCurrencyToLocalStorage = currency;
@@ -29,11 +31,48 @@ const CryptoRow = (props) => {
           <tr key={currency.id}>
             <th scope="row">{currency.rank}</th>
             <td>
-              {currency.name}({currency.symbol})
+              <span style={{ marginRight: "10px" }}>{currency.name}</span>(
+              <span className="fw-bold">{currency.symbol}</span>)
             </td>
-            <td>{currency.quotes.USD.price}</td>
-            <td>{currency.quotes.USD.percent_change_24h}</td>
-            <td>{currency.quotes.USD.percent_change_7d}</td>
+            <td>{currency.quotes.USD.price.toFixed(2)}$</td>
+
+            <td className="d-flex flex-column ">
+              {currency.quotes.USD.percent_change_24h < 0 ? (
+                <span className="d-flex justify-content-center">
+                  <FontAwesomeIcon
+                    className="text-danger"
+                    icon={faChevronDown}
+                  />
+                </span>
+              ) : (
+                <span className="d-flex justify-content-center">
+                  <FontAwesomeIcon
+                    className="text-success"
+                    icon={faChevronUp}
+                  />
+                </span>
+              )}
+
+              {currency.quotes.USD.percent_change_24h}
+            </td>
+            <td>
+              {currency.quotes.USD.percent_change_7d < 0 ? (
+                <span className="d-flex justify-content-center">
+                  <FontAwesomeIcon
+                    className="text-danger"
+                    icon={faChevronDown}
+                  />
+                </span>
+              ) : (
+                <span className="d-flex justify-content-center">
+                  <FontAwesomeIcon
+                    className="text-success "
+                    icon={faChevronUp}
+                  />
+                </span>
+              )}
+              {currency.quotes.USD.percent_change_7d}
+            </td>
             <td>
               <FontAwesomeIcon
                 className="text-danger"
