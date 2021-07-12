@@ -20,7 +20,7 @@ const Favourites = () => {
 
   useEffect(() => {
     console.log("useeff");
-  }, [realtime]);
+  }, []);
 
   return (
     <div className="container mt-5">
@@ -41,7 +41,7 @@ const Favourites = () => {
               ? null
               : favouriteCrypto.map((currency, index) => {
                   return (
-                    <tr key={currency.rank}>
+                    <tr key={index}>
                       <th scope="row">{index + 1}</th>
                       <td>
                         {currency.name}({currency.symbol})

@@ -47,7 +47,7 @@ const CryptoList = () => {
           <tbody>
             {loading === false ? (
               <div
-                class="spinner-border text-primary position-absolute end-50 mt-5"
+                className="spinner-border text-primary position-absolute end-50 mt-5"
                 role="status"
               ></div>
             ) : (

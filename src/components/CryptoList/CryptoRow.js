@@ -9,20 +9,39 @@ const CryptoRow = (props) => {
     return a.rank - b.rank;
   });
 
-  const favouriteCrypto = JSON.parse(localStorage.getItem("favourite"));
+
 
   const handleFavouriteClick = (currency) => {
     const saveCurrencyToLocalStorage = currency;
     let dataFromLocalStorage = [];
+    console.log("SAVECURRENCYID", saveCurrencyToLocalStorage.id)
+    //console.log("DATAFROMLOCALID", dataFromLocalStorage)
+
+
     if (localStorage.getItem("favourite") != null) {
       dataFromLocalStorage = JSON.parse(localStorage.getItem("favourite"));
+      const getCryptoId = dataFromLocalStorage.map((idcrypto) => {
+        return idcrypto.id
+      })
+
+    if (Object.values(getCryptoId).indexOf(saveCurrencyToLocalStorage.id) > -1) {
+         console.log('has test1');
+     }
+     else{
+
+      console.log("moge dodac")
       dataFromLocalStorage.push(saveCurrencyToLocalStorage);
       localStorage.setItem("favourite", JSON.stringify(dataFromLocalStorage));
+
+     }
+    
     } else {
+      console.log("else")
       dataFromLocalStorage.push(saveCurrencyToLocalStorage);
       localStorage.setItem("favourite", JSON.stringify(dataFromLocalStorage));
     }
   };
+
 
   return (
     <>
@@ -34,7 +53,7 @@ const CryptoRow = (props) => {
               <span style={{ marginRight: "10px" }}>{currency.name}</span>(
               <span className="fw-bold">{currency.symbol}</span>)
             </td>
-            <td>{currency.quotes.USD.price.toFixed(2)}$</td>
+            <td className="fw-bold">{currency.quotes.USD.price.toFixed(2)} USD</td>
 
             <td className="d-flex flex-column ">
               {currency.quotes.USD.percent_change_24h < 0 ? (
