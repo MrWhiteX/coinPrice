@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faChevronUp,
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 function Pagination({ data, pageLimit, dataLimit }) {
@@ -64,7 +69,7 @@ function Pagination({ data, pageLimit, dataLimit }) {
       {/* show the posts, 10 posts at a time */}
 
       {getPaginatedData().map((currency, idx) => (
-        <tr key={idx}>
+        <tr key={currency.id}>
           <th className="" scope="row">
             {currency.rank}
           </th>
@@ -112,18 +117,24 @@ function Pagination({ data, pageLimit, dataLimit }) {
         </tr>
       ))}
 
-      <div className="pagination position-absolute mt-5">
+      <div className="pagination mt-5">
         {/* previous button */}
         <button
           onClick={goToPreviousPage}
-          className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+          className={`prev ${currentPage === 1 ? "disabled" : ""} fw-bold`}
         >
-          prev
+          <FontAwesomeIcon icon={faChevronLeft} size="xs" />
         </button>
 
         {/* show page numbers */}
         {getPaginationGroup().map((item, index) => (
-          <button key={index} onClick={changePage}>
+          <button
+            key={index}
+            onClick={changePage}
+            className={`paginationItem ${
+              currentPage === item ? "active" : null
+            } `}
+          >
             <span>{item}</span>
           </button>
         ))}
@@ -131,9 +142,9 @@ function Pagination({ data, pageLimit, dataLimit }) {
         {/* next button */}
         <button
           onClick={goToNextPage}
-          className={`next ${currentPage === pages ? "disabled" : ""}`}
+          className={`next ${currentPage === pages ? "disabled" : ""} fw-bold`}
         >
-          next
+          <FontAwesomeIcon icon={faChevronRight} size="xs" />
         </button>
       </div>
     </>

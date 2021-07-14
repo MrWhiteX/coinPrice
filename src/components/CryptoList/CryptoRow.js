@@ -1,8 +1,8 @@
 import React from "react";
 import Pagination from "./Pagination";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+// import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 const CryptoRow = (props) => {
   const { crypto } = props;

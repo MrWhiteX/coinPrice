@@ -13,21 +13,30 @@ code {
 }
 
 .pagination {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .paginationItem {
+  display: flex;
   background: #fff;
   border: 2px solid #666;
   padding: 10px 15px;
   border-radius: 50%;
-  height: 45px;
-  width: 45px;
+  height: 25px;
+  width: 25px;
   position: relative;
   margin: 0 5px;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .paginationItem {
+    height: 30px;
+    width: 30px;
+  }
 }
 
 .paginationItem span {
@@ -39,18 +48,25 @@ code {
 
 .prev,
 .next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #fff;
-  border: none;
-  padding: 10px;
-  color: blue;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  border: 3px solid #4db4ba;
+  border-radius: 50%;
+  color: grey;
+  width: 40px;
+  height: 40px;
+
   margin: 0 10px;
   cursor: pointer;
 }
 
 .paginationItem.active {
   border: 1px solid #888;
-  color: #888;
+  color: #fff;
+  font-weight: bold;
+  background: #4db4ba;
   pointer-events: none;
 }
 
