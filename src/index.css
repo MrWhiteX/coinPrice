@@ -1,17 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
-
-
- 
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap");
 
 body {
-   
   margin: 0;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.pagination {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginationItem {
+  display: flex;
+  background: #fff;
+  border: 2px solid #666;
+  padding: 10px 15px;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  position: relative;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .paginationItem {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.paginationItem span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prev,
+.next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 3px solid #4db4ba;
+  border-radius: 50%;
+  color: grey;
+  width: 40px;
+  height: 40px;
+
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.paginationItem.active {
+  border: 1px solid #888;
+  color: #fff;
+  font-weight: bold;
+  background: #4db4ba;
+  pointer-events: none;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
 }

@@ -6,11 +6,9 @@ const Favourites = () => {
   const [realtime, setRealtime] = useState(false);
 
   const favouriteCrypto = JSON.parse(localStorage.getItem("favourite"));
-  const handleRemoveFavourite = (currency, index) => {
-    console.log(index);
+  const handleRemoveFavourite = (index) => {
     favouriteCrypto.splice(index, 1);
     localStorage.setItem("favourite", JSON.stringify(favouriteCrypto));
-    console.log(favouriteCrypto.length);
 
     setRealtime(!realtime);
     if (favouriteCrypto.length === 0) {
@@ -54,7 +52,7 @@ const Favourites = () => {
                           className="text-danger"
                           icon={faStar}
                           style={{ cursor: "pointer" }}
-                          onClick={() => handleRemoveFavourite(currency, index)}
+                          onClick={() => handleRemoveFavourite(index)}
                         />
                       </td>
                     </tr>
