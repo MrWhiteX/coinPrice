@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./Navbar";
 import CryptoInfo from "../CryptoList/CryptoInfo";
 
-
 const Header = () => {
   return (
     <header>
@@ -15,4 +14,3 @@ const Header = () => {
 };
 
 export default Header;
-
