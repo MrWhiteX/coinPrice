@@ -1,32 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { fetchCrypto } from "./Data/CryptoApi";
+import React, { useContext, useEffect, useState } from "react";
+import { CryptoContex } from "../../CryptoContex";
 import CryptoRow from "./CryptoRow";
 
 const CryptoList = () => {
-  const [crypto, setCrypto] = useState();
-  const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   fetchCrypto().then((data) => {
-  //     setCrypto(Object.values(data));
-  //     setLoading(true);
-  //     console.log("ponowny render");
-  //   });
-  // }, []);
-
-  useEffect(() => {
-    fetchCrypto().then((data) => {
-      setCrypto(Object.values(data));
-      setLoading(true);
-    });
-    const intervalID = setInterval(() => {
-      fetchCrypto().then((data) => {
-        setCrypto(Object.values(data));
-      });
-    }, 3000);
-
-    return () => clearInterval(intervalID);
-  }, []);
+  const { crypto, loading } = useContext(CryptoContex);
 
   return (
     <div className="container mt-5">

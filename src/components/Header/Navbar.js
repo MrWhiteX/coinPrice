@@ -1,4 +1,5 @@
 import React from "react";
+import Searchbar from "../Searchbar/Searchbar";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -36,19 +37,7 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex ">
-              <input
-                type="text"
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-
-              <button className="btn btn-outline-primary" type="submit">
-                Search
-              </button>
-            </form>
+            <Searchbar />
           </div>
         </div>
       </nav>
