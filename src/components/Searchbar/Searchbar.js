@@ -2,14 +2,13 @@ import React, { useState, useContext } from "react";
 import { CryptoContex } from "../../CryptoContex";
 
 const Searchbar = () => {
-  const { crypto, loading } = useContext(CryptoContex);
+  const { crypto, searchHandler } = useContext(CryptoContex);
   const [term, setTerm] = useState("");
 
   const search = () => {
-    console.log(`klikam szukaj`);
+    console.log(`klikam`);
+    searchHandler(term);
   };
-
-  console.log(`Mam dostęp z searchbar do API przez CONTEXT`);
 
   return (
     <div className="d-flex ">
