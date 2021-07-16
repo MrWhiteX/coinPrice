@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
@@ -6,17 +6,40 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 function Pagination({ data, pageLimit, dataLimit }) {
   const [pages] = useState(Math.round(data.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
+  const [isFav, setIsFav] = useState(true);
+  const idCryptoFav = [];
 
-  const handleFavouriteClick = (currency) => {
+  useEffect(() => {}, [isFav]);
+  const localData = JSON.parse(localStorage.getItem("favourite"));
+
+  function getIdFromLocalStorage() {
+    if (localData != null) {
+      localData.map((item) => {
+        idCryptoFav.push(item.id);
+      });
+    }
+  }
+
+  function checkIdAlreadyExist(currency) {
+    if (idCryptoFav.includes(currency.id)) {
+      const indx = idCryptoFav.indexOf(currency.id);
+      localData.splice(indx, 1);
+      localStorage.setItem("favourite", JSON.stringify(localData));
+    }
+  }
+
+  getIdFromLocalStorage();
+
+  const handleFavouriteClick = (currency, index) => {
+    setIsFav(!isFav);
     const saveCurrencyToLocalStorage = currency;
     let dataFromLocalStorage = [];
-    console.log("SAVECURRENCYID", saveCurrencyToLocalStorage.id);
-    //console.log("DATAFROMLOCALID", dataFromLocalStorage)
 
     if (localStorage.getItem("favourite") != null) {
       dataFromLocalStorage = JSON.parse(localStorage.getItem("favourite"));
@@ -28,6 +51,7 @@ function Pagination({ data, pageLimit, dataLimit }) {
         Object.values(getCryptoId).indexOf(saveCurrencyToLocalStorage.id) > -1
       ) {
         console.log("has test1");
+        checkIdAlreadyExist(currency);
       } else {
         console.log("moge dodac");
         dataFromLocalStorage.push(saveCurrencyToLocalStorage);
@@ -109,9 +133,9 @@ function Pagination({ data, pageLimit, dataLimit }) {
           <td>
             <FontAwesomeIcon
               className="text-danger"
-              icon={faStar}
+              icon={idCryptoFav.includes(currency.id) ? faStarSolid : faStar}
               style={{ cursor: "pointer" }}
-              onClick={() => handleFavouriteClick(currency)}
+              onClick={() => handleFavouriteClick(currency, idx)}
             />
           </td>
         </tr>
