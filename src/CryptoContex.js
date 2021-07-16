@@ -16,7 +16,7 @@ function CryptoContexProvider({ children }) {
       fetchCrypto().then((data) => {
         setCrypto(Object.values(data));
       });
-    }, 3000);
+    }, 113000);
 
     return () => clearInterval(intervalID);
   }, []);
