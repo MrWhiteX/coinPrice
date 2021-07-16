@@ -1,8 +1,13 @@
 import React from "react";
 import Searchbar from "../Searchbar/Searchbar";
 import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom'
+
+
 
 const Navbar = () => {
+
+  const location = useLocation()
   return (
     <div className="mt-5">
       <nav className="navbar navbar-expand navbar-light bg-light">
@@ -37,7 +42,9 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <Searchbar />
+
+            {location.pathname === "/favourites" ? null : <Searchbar />}
+            
           </div>
         </div>
       </nav>
