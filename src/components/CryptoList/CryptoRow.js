@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "./Pagination";
+import { CryptoContex } from "../../CryptoContex";
 
 const CryptoRow = (props) => {
   const { crypto } = props;

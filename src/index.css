@@ -76,3 +76,7 @@ code {
   box-shadow: none;
   color: #999;
 }
+
+footer {
+  margin-top: 120px;
+}
