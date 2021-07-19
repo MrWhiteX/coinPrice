@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer>
-      <div className="navbar navbar-expand bg-dark">
+    <footer className="fixed-bottom">
+      <div className="bg-dark">
         <div className="container">
-          <span className="text-white fw-bold">
+          <span className="text-white fs-5 fw-bold">
             All rights reserved © 2021 CoinPrice.pl
           </span>
         </div>
@@ -15,3 +15,4 @@ const Footer = () => {
 };
 
 export default Footer;
+// fixed-bottom

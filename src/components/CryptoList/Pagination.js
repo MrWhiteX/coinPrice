@@ -141,7 +141,7 @@ function Pagination({ data, pageLimit, dataLimit }) {
         </tr>
       ))}
 
-      <div className="pagination mt-4 mb-5">
+      <div className="pagination mt-2 mb-5">
         {/* previous button */}
         <button
           onClick={goToPreviousPage}

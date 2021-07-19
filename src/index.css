@@ -5,6 +5,7 @@ body {
   font-family: "Rajdhani", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh !important;
 }
 
 code {
@@ -78,5 +79,14 @@ code {
 }
 
 footer {
-  margin-top: 120px;
+  display: none;
+}
+@media (min-width: 768px) {
+  footer {
+    display: block;
+  }
+}
+
+.crypto__list {
+  height: 70vh;
 }

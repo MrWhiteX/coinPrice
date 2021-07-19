@@ -6,7 +6,6 @@ const Searchbar = () => {
   const [term, setTerm] = useState("");
 
   const search = () => {
-    console.log(`klikam`);
     searchHandler(term);
   };
 
