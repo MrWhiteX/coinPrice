@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Searchbar from "../Searchbar/Searchbar";
+
 import { Link } from "react-router-dom";
-import { useLocation } from 'react-router-dom'
-
-
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const location = useLocation();
 
-  const location = useLocation()
+  const top10Handler = () => {
+    if (location.pathname === "/") {
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="mt-5">
       <nav className="navbar navbar-expand navbar-light bg-light">
@@ -32,7 +37,7 @@ const Navbar = () => {
           >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 fw-bold fs-4  ">
               <li className="nav-item">
-                <Link to="/" className="nav-link active">
+                <Link to="/" onClick={top10Handler} className="nav-link active">
                   Top10
                 </Link>
               </li>
@@ -44,7 +49,6 @@ const Navbar = () => {
             </ul>
 
             {location.pathname === "/favourites" ? null : <Searchbar />}
-            
           </div>
         </div>
       </nav>

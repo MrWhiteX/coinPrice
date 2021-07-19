@@ -6,6 +6,7 @@ export const CryptoContex = createContext();
 function CryptoContexProvider({ children }) {
   const [crypto, setCrypto] = useState();
   const [cryptoCopy, setcryptoCopy] = useState();
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -31,8 +32,6 @@ function CryptoContexProvider({ children }) {
         x.name.toLowerCase().includes(term.toLowerCase())
     );
     setCrypto(filtredCrypto);
-
-    console.log(filtredCrypto);
   };
 
   return (

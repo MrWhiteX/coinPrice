@@ -15,13 +15,14 @@ function App() {
             <Header />
             <CryptoList />
           </Route>
+
           <Route path="/favourites">
             <Header />
             <Favourites />
           </Route>
-          <Footer />
         </Router>
       </CryptoContexProvider>
+      {/* <Footer /> */}
     </div>
   );
 }
