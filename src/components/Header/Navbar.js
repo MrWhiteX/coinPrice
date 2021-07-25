@@ -47,7 +47,7 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-
+            <span style={{marginRight:"10px"}}>Powered by <b>Coinpaprika</b></span>
             {location.pathname === "/favourites" ? null : <Searchbar />}
           </div>
         </div>

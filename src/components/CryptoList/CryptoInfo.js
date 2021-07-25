@@ -21,9 +21,7 @@ const CryptoInfo = () => {
       {info ? (
         <div className="row d-flex align-items-center fs-4 fs-sm-2 text-left">
           <div className="col-md-3">
-            <Link to="/" className="nav-link active" onClick={logoHandler}>
-              <img src="logo.jpeg" alt="" className="img-fluid" />
-            </Link>
+            <img src="logo.jpeg" alt="" className="img-fluid" />
           </div>
           <div className="col-md-3  ">
             <span className="">Market Cap</span>
