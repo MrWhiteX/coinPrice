@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="mt-5">
+    <div className="mt-3">
       <nav className="navbar navbar-expand navbar-light bg-light">
         <div className="container">
           {/* <button
@@ -47,7 +47,9 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <span style={{marginRight:"10px"}}>Powered by <b>Coinpaprika</b></span>
+            <span style={{ marginRight: "10px" }}>
+              Powered by <b>Coinpaprika</b>
+            </span>
             {location.pathname === "/favourites" ? null : <Searchbar />}
           </div>
         </div>

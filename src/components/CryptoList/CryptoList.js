@@ -26,15 +26,21 @@ const CryptoList = () => {
           </div>
 
           <div className="offset-1 offset-sm-1 col-4 col-sm-1">
-            <span className="text-white fs-5 fw-bold">24h</span>
+            <span className="d-none d-sm-block text-white fs-5 fw-bold">
+              24h
+            </span>
           </div>
 
           <div className="col-3 col-sm-2">
-            <span className="text-white fs-5 fw-bold">7d</span>
+            <span className="d-none d-sm-block text-white fs-5 fw-bold">
+              7d
+            </span>
           </div>
 
           <div className="col-1 col-sm-1 d-flex align-items-center">
-            <span className="text-white fs-5 fw-bold">Favorites</span>
+            <span className="d-none d-sm-block text-white fs-5 fw-bold">
+              Favorites
+            </span>
           </div>
         </div>
       </div>
