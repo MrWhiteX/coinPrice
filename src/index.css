@@ -55,7 +55,7 @@ code {
   background: #fff;
   border: 3px solid #4db4ba;
   border-radius: 50%;
-  color: grey;
+  color: black;
   width: 40px;
   height: 40px;
 
@@ -75,7 +75,7 @@ code {
 .next.disabled {
   pointer-events: none;
   box-shadow: none;
-  color: #999;
+  color: black;
 }
 
 footer {

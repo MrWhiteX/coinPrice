@@ -159,35 +159,41 @@ function Pagination({ data, pageLimit, dataLimit }) {
         </div>
       ))}
 
-      <div className="pagination mt-2 mb-5">
-        {/* previous button */}
-        <button
-          onClick={goToPreviousPage}
-          className={`prev ${currentPage === 1 ? "disabled" : ""} fw-bold`}
-        >
-          <FontAwesomeIcon icon={faChevronLeft} size="xs" />
-        </button>
+      <div className="row">
+        <div className="col-12 d-flex justify-content-center ">
+          <div className="pagination mt-2 mb-5">
+            {/* previous button */}
+            <button
+              onClick={goToPreviousPage}
+              className={`prev ${currentPage === 1 ? "disabled" : ""} fw-bold`}
+            >
+              <FontAwesomeIcon icon={faChevronLeft} size="xs" />
+            </button>
 
-        {/* show page numbers */}
-        {getPaginationGroup().map((item, index) => (
-          <button
-            key={index}
-            onClick={changePage}
-            className={`paginationItem ${
-              currentPage === item ? "active" : null
-            } `}
-          >
-            <span>{item}</span>
-          </button>
-        ))}
+            {/* show page numbers */}
+            {getPaginationGroup().map((item, index) => (
+              <button
+                key={index}
+                onClick={changePage}
+                className={`paginationItem ${
+                  currentPage === item ? "active" : null
+                } `}
+              >
+                <span>{item}</span>
+              </button>
+            ))}
 
-        {/* next button */}
-        <button
-          onClick={goToNextPage}
-          className={`next ${currentPage === pages ? "disabled" : ""} fw-bold`}
-        >
-          <FontAwesomeIcon icon={faChevronRight} size="xs" />
-        </button>
+            {/* next button */}
+            <button
+              onClick={goToNextPage}
+              className={`next ${
+                currentPage === pages ? "disabled" : ""
+              } fw-bold`}
+            >
+              <FontAwesomeIcon icon={faChevronRight} size="xs" />
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
