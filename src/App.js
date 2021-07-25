@@ -22,7 +22,7 @@ function App() {
           </Route>
         </Router>
       </CryptoContexProvider>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

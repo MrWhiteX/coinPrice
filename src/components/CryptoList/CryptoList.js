@@ -6,33 +6,54 @@ const CryptoList = () => {
   const { crypto, loading } = useContext(CryptoContex);
 
   return (
-    <div className="crypto__list container mt-5 ">
-      <div className="table-responsive ">
-        <table className="table table-borderless table-hover fs-5 ">
-          <thead className="position-sticky">
-            <tr className="table-dark position-sticky">
-              <th className="" scope="col">
-                #
-              </th>
-              <th scope="col">Crypto</th>
-              <th scope="col">Price</th>
-              <th scope="col">24h</th>
-              <th scope="col">7d</th>
-              <th scope="col">Favourite</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading === false ? (
-              <div
-                className="spinner-border text-primary position-absolute end-50 mt-5"
-                role="status"
-              ></div>
-            ) : (
-              <CryptoRow crypto={crypto} />
-            )}
-          </tbody>
-        </table>
+    <div className="container fs-5">
+      <div className="bg-dark">
+        <div className="row">
+          <div className="col-1 col-sm-1">
+            <span className="text-white fs-5 fw-bold">#</span>
+          </div>
+
+          <div className="col-7 col-sm-4">
+            <span className="text-white fs-5 fw-bold d-flex justify-content-start">Crypto</span>
+          </div>
+
+          <div className="col-4 col-sm-2">
+            <span className="text-white fs-5 fw-bold">Price</span>
+          </div>
+
+
+          <div className="offset-1 offset-sm-0 col-3 col-sm-2">
+            <span className="text-white fs-5 fw-bold">24h</span>
+          </div>
+
+
+          <div className="col-3 col-sm-2">
+            <span className="text-white fs-5 fw-bold">7d</span>
+          </div>
+
+          <div className="col-1 col-sm-1 d-flex justify-content-end align-items-center">
+            <span className="text-white fs-5 fw-bold ">Favorites</span>
+          </div>
+
+          
+
+
+        </div>
+
+
+
+
+
       </div>
+
+      {loading === false ? (
+        <div
+          className="spinner-border text-primary position-absolute end-50 mt-5"
+          role="status"
+        ></div>
+      ) : (
+        <CryptoRow crypto={crypto} />
+      )}
     </div>
   );
 };

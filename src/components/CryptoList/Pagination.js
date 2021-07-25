@@ -93,19 +93,24 @@ function Pagination({ data, pageLimit, dataLimit }) {
       {/* show the posts, 10 posts at a time */}
 
       {getPaginatedData().map((currency, idx) => (
-        <tr key={currency.id}>
-          <th className="" scope="row">
-            {currency.rank}
-          </th>
-          <td>
-            <span style={{ marginRight: "10px" }}>{currency.name}</span>(
-            <span className="fw-bold">{currency.symbol}</span>)
-          </td>
-          <td className="fw-bold">
-            {currency.quotes.USD.price.toFixed(2)} USD
-          </td>
+        <div key={currency.id} className="row mb-4 mb-md-0 border-bottom border-bottom-sm-0">
+          <div className="col-1 col-sm-1 fw-bold">{currency.rank}</div>
 
-          <td className="d-flex flex-column ">
+          <div className="col-7 col-sm-4">
+            <span className="d-flex justify-content-start">
+             <b>{currency.name}{" "}</b> 
+              <span style={{ marginLeft: "10px" }}>({currency.symbol})</span>
+            </span>
+          </div>
+
+          <div className="col-4 col-sm-2">
+            <span className="d-flex justify-content-end fw-bold">
+              {currency.quotes.USD.price.toFixed(2)}{" "} USD
+            </span>
+          </div>
+          
+          <div className="offset-1 offset-sm-0 col-3 col-sm-2">
+          
             {currency.quotes.USD.percent_change_24h < 0 ? (
               <span className="d-flex justify-content-center">
                 <FontAwesomeIcon className="text-danger" icon={faChevronDown} />
@@ -115,10 +120,13 @@ function Pagination({ data, pageLimit, dataLimit }) {
                 <FontAwesomeIcon className="text-success" icon={faChevronUp} />
               </span>
             )}
+            
+            <span className="fw-bold">{currency.quotes.USD.percent_change_24h}</span>
+            
+            <sup className="d-sm-none"> 24h</sup>
+          </div>
 
-            {currency.quotes.USD.percent_change_24h}
-          </td>
-          <td>
+          <div className="col-3 col-sm-2">
             {currency.quotes.USD.percent_change_7d < 0 ? (
               <span className="d-flex justify-content-center">
                 <FontAwesomeIcon className="text-danger" icon={faChevronDown} />
@@ -128,17 +136,25 @@ function Pagination({ data, pageLimit, dataLimit }) {
                 <FontAwesomeIcon className="text-success " icon={faChevronUp} />
               </span>
             )}
-            {currency.quotes.USD.percent_change_7d}
-          </td>
-          <td>
+
+
+
+<span className="fw-bold">{currency.quotes.USD.percent_change_7d}</span>
+            
+
+
+            <sup className="d-sm-none"> 7d</sup>
+          </div>
+
+          <div className="offset-4 offset-sm-0 col-1 col-sm-1 d-flex justify-content-end align-items-center">
             <FontAwesomeIcon
               className="text-danger"
               icon={idCryptoFav.includes(currency.id) ? faStarSolid : faStar}
               style={{ cursor: "pointer" }}
               onClick={() => handleFavouriteClick(currency, idx)}
             />
-          </td>
-        </tr>
+          </div>
+        </div>
       ))}
 
       <div className="pagination mt-2 mb-5">
