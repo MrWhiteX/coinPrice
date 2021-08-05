@@ -2,10 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import Searchbar from "../Searchbar/Searchbar";
 
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
+
 import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
+  const params = useParams();
 
   const top10Handler = () => {
     if (location.pathname === "/") {
@@ -50,7 +53,8 @@ const Navbar = () => {
             <span style={{ marginRight: "10px" }}>
               Powered by <b>Coinpaprika</b>
             </span>
-            {location.pathname === "/favourites" ? null : <Searchbar />}
+
+            {location.pathname === "/" ? <Searchbar /> : null}
           </div>
         </div>
       </nav>
