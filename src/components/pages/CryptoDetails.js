@@ -20,7 +20,7 @@ const CryptoDetails = () => {
               <>
                 <div
                   key={singleCrypto.id}
-                  className="col-12 container text-white"
+                  className="col-12 container text-white "
                 >
                   <div className="col-12 bg-dark">
                     <span className="fs-5 fw-bold">
@@ -28,9 +28,9 @@ const CryptoDetails = () => {
                     </span>
                   </div>
 
-                  <div className=" row text-dark fs-5 fw-bold mt-4">
+                  <div className="row   text-dark fs-5 fw-bold mt-4">
                     <div className="d-flex align-items-center border-bottom border-bottom-sm-0 ">
-                      <span className="col-6 ">{singleCrypto.name} Price</span>
+                      <span className="col-6  ">{singleCrypto.name} Price</span>
                       <span className="col-6">
                         {singleCrypto.quotes.USD.price.toFixed(2)} USD
                       </span>
