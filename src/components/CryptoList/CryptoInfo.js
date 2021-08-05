@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { fetchInfo } from "./Data/CryptoApi";
-import { Link } from "react-router-dom";
 
 const CryptoInfo = () => {
   const [info, setInfo] = useState();
@@ -21,7 +20,7 @@ const CryptoInfo = () => {
       {info ? (
         <div className="row d-flex align-items-center fs-4 fs-sm-2 text-left">
           <div className="col-md-3">
-            <img src="logo.jpeg" alt="" className="img-fluid" />
+            <img src="../logo.jpeg" alt="" className="img-fluid" />
           </div>
           <div className="col-md-3  ">
             <span className="">Market Cap</span>
