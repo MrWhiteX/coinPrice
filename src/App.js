@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import CryptoList from "./components/CryptoList/CryptoList";
 import Favourites from "./components/Favourites/Favourites";
 import Footer from "./components/Footer/Footer";
+import CryptoDetails from "./components/pages/CryptoDetails";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import CryptoContexProvider from "./CryptoContex";
 
@@ -14,6 +15,11 @@ function App() {
           <Route exact={true} path="/">
             <Header />
             <CryptoList />
+          </Route>
+          <Route path="/details/:id">
+            <Header />
+
+            <CryptoDetails />
           </Route>
 
           <Route path="/favourites">
