@@ -22,10 +22,6 @@ const Favourites = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("useeff");
-  }, []);
-
   return (
     <div className="container fs-5">
       <div className="bg-dark">
