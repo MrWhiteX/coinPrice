@@ -35,207 +35,132 @@ const CryptoDetails = () => {
                         {singleCrypto.symbol} - Price Statistic
                       </span>
                     </div>
-                    <div className="col-12 mt-5 d-flex justify-content-center flex-wrap">
-                      <div
-                        className="col-4 card mb-3 offset-1"
-                        style={{ maxWidth: "20rem" }}
-                      >
-                        <div className="card-header">
-                          <span>{singleCrypto.name} Price</span>
-                        </div>
-                        <div className="card-body">
-                          <h4 className="card-title">
-                            {" "}
-                            <span>
-                              {singleCrypto.quotes.USD.price.toFixed(2)} USD
-                            </span>
-                          </h4>
-                        </div>
-                      </div>
-                      <div
-                        className="col-4 card mb-3 offset-1"
-                        style={{ maxWidth: "20rem" }}
-                      >
-                        <div className="card-header">
-                          <span>Highest price (All Time)</span>
-                        </div>
-                        <div className="card-body">
-                          <h4 className="card-title">
-                            {" "}
-                            {singleCrypto.quotes.USD.ath_price.toFixed(2)} USD
-                          </h4>
-                        </div>
-                      </div>
-                      <div
-                        className="col-4 card mb-3 offset-1"
-                        style={{ maxWidth: "20rem" }}
-                      >
-                        <div className="card-header">
-                          <span>Price Change (24h)</span>
-                        </div>
-                        <div className="card-body">
-                          <h4 className="card-title">
-                            <span>
-                              {singleCrypto.quotes.USD.percent_change_24h} %
-                              {singleCrypto.quotes.USD.percent_change_24h <
-                              0 ? (
-                                <span className="ms-2">
-                                  <FontAwesomeIcon
-                                    className="text-danger"
-                                    icon={faChevronDown}
-                                  />
+
+                    <div className="row mt-4 d-flex">
+                      <div className="col-12 d-flex flex-column flex-md-row  ">
+                        <div className="col-12 col-md-4 d ">
+                          <div className="card" style={{ maxWidth: "20rem" }}>
+                            <div className="card-header fw-bold">
+                              <span>{singleCrypto.name} Price</span>
+                            </div>
+                            <div className="card-body">
+                              <h4 className="card-title">
+                                <span>
+                                  {singleCrypto.quotes.USD.price.toFixed(2)} USD
                                 </span>
-                              ) : (
-                                <span className="ms-2">
-                                  <FontAwesomeIcon
-                                    className="text-success"
-                                    icon={faChevronUp}
-                                  />
+                              </h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12 col-md-4 mt-4 mt-md-0">
+                          <div className="card  " style={{ maxWidth: "20rem" }}>
+                            <div className="card-header fw-bold">
+                              <span>Highest price (All Time)</span>
+                            </div>
+                            <div className="card-body">
+                              <h4 className="card-title">
+                                {singleCrypto.quotes.USD.ath_price.toFixed(2)}
+                                USD
+                              </h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12 col-md-4 mt-4 mt-md-0">
+                          <div className="card  " style={{ maxWidth: "20rem" }}>
+                            <div className="card-header fw-bold">
+                              <span>Price Change (24h)</span>
+                            </div>
+                            <div className="card-body">
+                              <h4 className="card-title">
+                                <span>
+                                  {singleCrypto.quotes.USD.percent_change_24h} %
+                                  {singleCrypto.quotes.USD.percent_change_24h <
+                                  0 ? (
+                                    <span className="ms-2">
+                                      <FontAwesomeIcon
+                                        className="text-danger"
+                                        icon={faChevronDown}
+                                      />
+                                    </span>
+                                  ) : (
+                                    <span className="ms-2">
+                                      <FontAwesomeIcon
+                                        className="text-success"
+                                        icon={faChevronUp}
+                                      />
+                                    </span>
+                                  )}
                                 </span>
-                              )}
-                            </span>
-                          </h4>
+                              </h4>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div
-                        className="col-4 card mb-3 offset-1"
-                        style={{ maxWidth: "20rem" }}
-                      >
-                        <div className="card-header">
-                          <span>Price Change (30 day)</span>
-                        </div>
-                        <div className="card-body">
-                          <h4 className="card-title">
-                            {" "}
-                            <span>
-                              {singleCrypto.quotes.USD.percent_change_30d} %
-                              {singleCrypto.quotes.USD.percent_change_30d <
-                              0 ? (
-                                <span className="ms-2">
-                                  <FontAwesomeIcon
-                                    className="text-danger"
-                                    icon={faChevronDown}
-                                  />
+                    </div>
+                    <div className="row mt-4">
+                      <div className="col-12 d-flex flex-column flex-md-row">
+                        <div className="col-12 col-md-4">
+                          <div className="card" style={{ maxWidth: "20rem" }}>
+                            <div className="card-header fw-bold">
+                              <span>Price Change (30 day)</span>
+                            </div>
+                            <div className="card-body">
+                              <h4 className="card-title">
+                                <span>
+                                  {singleCrypto.quotes.USD.percent_change_30d} %
+                                  {singleCrypto.quotes.USD.percent_change_30d <
+                                  0 ? (
+                                    <span className="ms-2">
+                                      <FontAwesomeIcon
+                                        className="text-danger"
+                                        icon={faChevronDown}
+                                      />
+                                    </span>
+                                  ) : (
+                                    <span className="ms-2">
+                                      <FontAwesomeIcon
+                                        className="text-success"
+                                        icon={faChevronUp}
+                                      />
+                                    </span>
+                                  )}
                                 </span>
-                              ) : (
-                                <span className="ms-2">
-                                  <FontAwesomeIcon
-                                    className="text-success"
-                                    icon={faChevronUp}
-                                  />
+                              </h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12 col-md-4 mt-4 mt-md-0">
+                          <div className="card" style={{ maxWidth: "20rem" }}>
+                            <div className="card-header fw-bold">
+                              <span>Max Supply</span>
+                            </div>
+                            <div className="card-body">
+                              <h4 className="card-title">
+                                <span>
+                                  {singleCrypto.max_supply}
+                                  {singleCrypto.symbol}
                                 </span>
-                              )}
-                            </span>
-                          </h4>
+                              </h4>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div
-                        className="col-4 card mb-3 offset-1"
-                        style={{ maxWidth: "20rem" }}
-                      >
-                        <div className="card-header">
-                          <span>Max Supply</span>
-                        </div>
-                        <div className="card-body">
-                          <h4 className="card-title">
-                            {" "}
-                            <span>
-                              {singleCrypto.max_supply} {singleCrypto.symbol}
-                            </span>{" "}
-                          </h4>
-                        </div>
-                      </div>
-                      <div
-                        className="col-4 card mb-3 offset-1"
-                        style={{ maxWidth: "20rem" }}
-                      >
-                        <div className="card-header">
-                          <span>Market Cap</span>
-                        </div>
-                        <div className="card-body">
-                          <h4 className="card-title">
-                            {" "}
-                            <span>
-                              {singleCrypto.quotes.USD.market_cap} USD
-                            </span>{" "}
-                          </h4>
+                        <div className="col-12 col-md-4 mt-4 mb-4 mb-md-0 mt-md-0">
+                          <div className="card  " style={{ maxWidth: "20rem" }}>
+                            <div className="card-header fw-bold">
+                              <span>Market Cap</span>
+                            </div>
+                            <div className="card-body">
+                              <h4 className="card-title">
+                                <span>
+                                  {singleCrypto.quotes.USD.market_cap} USD
+                                </span>
+                              </h4>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
-                  {/* <div className="col-12 bg-dark">
-                    <span className="fs-5 fw-bold">
-                      {singleCrypto.symbol} - Price Statistic
-                    </span>
-                  </div>
-
-                  <div className="row text-dark fs-5 fw-bold mt-4 d-flex">
-                    <div className="d-flex justify-content-between border-bottom border-bottom-sm-0 ">
-                      <span>{singleCrypto.name} Price</span>
-                      <span>
-                        {singleCrypto.quotes.USD.price.toFixed(2)} USD
-                      </span>
-                    </div>
-                    <div className="d-flex justify-content-between  mt-3 border-bottom border-bottom-sm-0">
-                      <span>Highest price (All Time)</span>
-                      <span>
-                        {singleCrypto.quotes.USD.ath_price.toFixed(2)} USD
-                      </span>
-                    </div>
-                    <div className="d-flex justify-content-between mt-3 border-bottom border-bottom-sm-0">
-                      <span>Price Change (24h)</span>
-                      <span>
-                        {singleCrypto.quotes.USD.percent_change_24h} %
-                        {singleCrypto.quotes.USD.percent_change_24h < 0 ? (
-                          <span className="ms-2">
-                            <FontAwesomeIcon
-                              className="text-danger"
-                              icon={faChevronDown}
-                            />
-                          </span>
-                        ) : (
-                          <span className="ms-2">
-                            <FontAwesomeIcon
-                              className="text-success"
-                              icon={faChevronUp}
-                            />
-                          </span>
-                        )}
-                      </span>
-                    </div>
-                    <div className="d-flex justify-content-between mt-3 border-bottom border-bottom-sm-0">
-                      <span>Price Change (30 day)</span>
-                      <span>
-                        {singleCrypto.quotes.USD.percent_change_30d} %
-                        {singleCrypto.quotes.USD.percent_change_30d < 0 ? (
-                          <span className="ms-2">
-                            <FontAwesomeIcon
-                              className="text-danger"
-                              icon={faChevronDown}
-                            />
-                          </span>
-                        ) : (
-                          <span className="ms-2">
-                            <FontAwesomeIcon
-                              className="text-success"
-                              icon={faChevronUp}
-                            />
-                          </span>
-                        )}
-                      </span>
-                    </div>
-                    <div className="d-flex justify-content-between mt-3 border-bottom border-bottom-sm-0">
-                      <span>Max Supply</span>
-                      <span>
-                        {singleCrypto.max_supply} {singleCrypto.symbol}
-                      </span>
-                    </div>
-                    <div className="d-flex justify-content-between mt-3 border-bottom border-bottom-sm-0">
-                      <span>Market Cap</span>
-                      <span>{singleCrypto.quotes.USD.market_cap} USD</span>
-                    </div>
-                  </div> */}
                 </div>
               </>
             );
@@ -247,3 +172,118 @@ const CryptoDetails = () => {
 };
 
 export default CryptoDetails;
+
+// {
+//   <div key={singleCrypto.id} className="col-12 container text-dark mt-4">
+//     <div className="">
+//       <div className="container alert alert-dismissible alert-primary">
+//         <span className="fs-3 fw-bold">
+//           {singleCrypto.symbol} - Price Statistic
+//         </span>
+//       </div>
+//       <div className="col-12 mt-5 d-flex  flex-wrap">
+//         <div className="col-4 card mb-3  " style={{ maxWidth: "20rem" }}>
+//           <div className="card-header fw-bold">
+//             <span>{singleCrypto.name} Price</span>
+//           </div>
+//           <div className="card-body">
+//             <h4 className="card-title">
+//               {" "}
+//               <span>{singleCrypto.quotes.USD.price.toFixed(2)} USD</span>
+//             </h4>
+//           </div>
+//         </div>
+//         <div className="col-4 card mb-3  " style={{ maxWidth: "20rem" }}>
+//           <div className="card-header fw-bold">
+//             <span>Highest price (All Time)</span>
+//           </div>
+//           <div className="card-body">
+//             <h4 className="card-title">
+//               {" "}
+//               {singleCrypto.quotes.USD.ath_price.toFixed(2)} USD
+//             </h4>
+//           </div>
+//         </div>
+//         <div className="col-4 card mb-3 " style={{ maxWidth: "20rem" }}>
+//           <div className="card-header fw-bold">
+//             <span>Price Change (24h)</span>
+//           </div>
+//           <div className="card-body">
+//             <h4 className="card-title">
+//               <span>
+//                 {singleCrypto.quotes.USD.percent_change_24h} %
+//                 {singleCrypto.quotes.USD.percent_change_24h < 0 ? (
+//                   <span className="ms-2">
+//                     <FontAwesomeIcon
+//                       className="text-danger"
+//                       icon={faChevronDown}
+//                     />
+//                   </span>
+//                 ) : (
+//                   <span className="ms-2">
+//                     <FontAwesomeIcon
+//                       className="text-success"
+//                       icon={faChevronUp}
+//                     />
+//                   </span>
+//                 )}
+//               </span>
+//             </h4>
+//           </div>
+//         </div>
+//         <div className="col-4 card mb-3  " style={{ maxWidth: "20rem" }}>
+//           <div className="card-header fw-bold">
+//             <span>Price Change (30 day)</span>
+//           </div>
+//           <div className="card-body">
+//             <h4 className="card-title">
+//               {" "}
+//               <span>
+//                 {singleCrypto.quotes.USD.percent_change_30d} %
+//                 {singleCrypto.quotes.USD.percent_change_30d < 0 ? (
+//                   <span className="ms-2">
+//                     <FontAwesomeIcon
+//                       className="text-danger"
+//                       icon={faChevronDown}
+//                     />
+//                   </span>
+//                 ) : (
+//                   <span className="ms-2">
+//                     <FontAwesomeIcon
+//                       className="text-success"
+//                       icon={faChevronUp}
+//                     />
+//                   </span>
+//                 )}
+//               </span>
+//             </h4>
+//           </div>
+//         </div>
+//         <div className="col-4 card mb-3  " style={{ maxWidth: "20rem" }}>
+//           <div className="card-header fw-bold">
+//             <span>Max Supply</span>
+//           </div>
+//           <div className="card-body">
+//             <h4 className="card-title">
+//               {" "}
+//               <span>
+//                 {singleCrypto.max_supply} {singleCrypto.symbol}
+//               </span>{" "}
+//             </h4>
+//           </div>
+//         </div>
+//         <div className="col-4 card mb-3  " style={{ maxWidth: "20rem" }}>
+//           <div className="card-header fw-bold">
+//             <span>Market Cap</span>
+//           </div>
+//           <div className="card-body">
+//             <h4 className="card-title">
+//               {" "}
+//               <span>{singleCrypto.quotes.USD.market_cap} USD</span>{" "}
+//             </h4>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </div>;
+// }
