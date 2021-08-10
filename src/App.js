@@ -12,18 +12,15 @@ function App() {
     <div className="App">
       <CryptoContexProvider>
         <Router>
+          <Header />
           <Route exact={true} path="/">
-            <Header />
             <CryptoList />
           </Route>
           <Route path="/details/:id">
-            <Header />
-
             <CryptoDetails />
           </Route>
 
           <Route path="/favourites">
-            <Header />
             <Favourites />
           </Route>
         </Router>
