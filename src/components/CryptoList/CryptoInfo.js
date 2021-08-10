@@ -11,11 +11,17 @@ const CryptoInfo = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
+    fetchInfo().then((data) => {
+      setInfo(data);
+    });
+
+    const intervalID = setInterval(() => {
       fetchInfo().then((data) => {
         setInfo(data);
       });
-    }, 10);
+    }, 114000);
+
+    return () => clearInterval(intervalID);
   }, [infoLoading]);
 
   const logoHandler = () => {
