@@ -2,7 +2,6 @@ const fetchCrypto = () => {
   return fetch(`https://api.coinpaprika.com/v1/tickers`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       return data;
       // return data.filter((el) => {
 

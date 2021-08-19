@@ -115,7 +115,12 @@ function Pagination({ data, pageLimit, dataLimit }) {
 
             <div className="col-5 col-sm-2">
               <span className="d-flex justify-content-end fw-bold">
-                {currency.quotes.USD.price.toFixed(2)} USD
+                {currency.quotes.USD.price > 1
+                  ? currency.quotes.USD.price.toFixed(2)
+                  : currency.quotes.USD.price < 0.0001
+                  ? currency.quotes.USD.price.toFixed(8)
+                  : currency.quotes.USD.price.toFixed(4)}{" "}
+                USD
               </span>
             </div>
 
