@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchInfo } from "./Data/CryptoApi";
 
 const CryptoInfo = () => {
@@ -23,10 +23,6 @@ const CryptoInfo = () => {
 
     return () => clearInterval(intervalID);
   }, [infoLoading]);
-
-  const logoHandler = () => {
-    window.location.reload();
-  };
 
   return (
     <>

@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Searchbar from "../Searchbar/Searchbar";
-
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
-
 import { useLocation } from "react-router-dom";
+import { CryptoContex } from "../../CryptoContex";
 
 const Navbar = () => {
   const location = useLocation();
-  const params = useParams();
+  const { getFavorites } = useContext(CryptoContex);
 
   const top10Handler = () => {
     if (location.pathname === "/") {
       window.location.reload();
     }
+  };
+
+  const getFavoritesFn = () => {
+    getFavorites();
   };
 
   return (
@@ -45,7 +47,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/favourites" className="nav-link active">
+                <Link onClick={getFavoritesFn} className="nav-link active">
                   Favourites
                 </Link>
               </li>

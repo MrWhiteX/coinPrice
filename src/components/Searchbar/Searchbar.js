@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { CryptoContex } from "../../CryptoContex";
 
 const Searchbar = () => {
-  const { crypto, searchHandler } = useContext(CryptoContex);
+  const { searchHandler } = useContext(CryptoContex);
   const [term, setTerm] = useState("");
 
   const search = () => {

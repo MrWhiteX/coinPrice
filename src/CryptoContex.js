@@ -4,8 +4,8 @@ import { fetchCrypto } from "./components/CryptoList/Data/CryptoApi";
 export const CryptoContex = createContext();
 
 function CryptoContexProvider({ children }) {
-  const [crypto, setCrypto] = useState();
-  const [cryptoCopy, setcryptoCopy] = useState();
+  const [crypto, setCrypto] = useState([]);
+  const [cryptoCopy, setcryptoCopy] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -34,8 +34,26 @@ function CryptoContexProvider({ children }) {
     setCrypto(filtredCrypto);
   };
 
+  const getFavorites = () => {
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem("favourite"));
+    const favoritesCrypto = [];
+
+    dataFromLocalStorage.forEach((element) => {
+      cryptoCopy.filter((item) => {
+        if (item.id === element.id) {
+          favoritesCrypto.push(item);
+        }
+
+        return true;
+      });
+    });
+
+    setCrypto(favoritesCrypto);
+  };
   return (
-    <CryptoContex.Provider value={{ crypto, loading, searchHandler }}>
+    <CryptoContex.Provider
+      value={{ crypto, loading, searchHandler, getFavorites }}
+    >
       {children}
     </CryptoContex.Provider>
   );

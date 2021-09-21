@@ -2,12 +2,7 @@ import React, { useContext } from "react";
 import { CryptoContex } from "../../CryptoContex";
 import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronDown,
-  faChevronUp,
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const CryptoDetails = () => {
   const { crypto, loading } = useContext(CryptoContex);
