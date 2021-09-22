@@ -2,7 +2,7 @@ import React from "react";
 import Pagination from "./Pagination";
 
 const CryptoRow = (props) => {
-  const { crypto } = props;
+  const { crypto, paginationInfo } = props;
   const sortedCrypto = crypto.sort(function (a, b) {
     return a.rank - b.rank;
   });
@@ -12,8 +12,9 @@ const CryptoRow = (props) => {
       <Pagination
         data={sortedCrypto}
         pageLimit={5}
-        dataLimit={10}
+        dataLimit={paginationInfo.unlimited ? paginationInfo.unlimited : 10}
         crypto={crypto}
+        paginationInfo={paginationInfo.favsite}
       />
     </>
   );

@@ -6,12 +6,10 @@ import { CryptoContex } from "../../CryptoContex";
 
 const Navbar = () => {
   const location = useLocation();
-  const { getFavorites } = useContext(CryptoContex);
+  const { getFavorites, top10Handler } = useContext(CryptoContex);
 
-  const top10Handler = () => {
-    if (location.pathname === "/") {
-      window.location.reload();
-    }
+  const top10HandlerFn = () => {
+    top10Handler();
   };
 
   const getFavoritesFn = () => {
@@ -42,12 +40,20 @@ const Navbar = () => {
           >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 fw-bold fs-4  ">
               <li className="nav-item">
-                <Link to="/" onClick={top10Handler} className="nav-link active">
+                <Link
+                  to="/"
+                  onClick={top10HandlerFn}
+                  className="nav-link active"
+                >
                   Top10
                 </Link>
               </li>
               <li className="nav-item">
-                <Link onClick={getFavoritesFn} className="nav-link active">
+                <Link
+                  to="/"
+                  onClick={getFavoritesFn}
+                  className="nav-link active"
+                >
                   Favourites
                 </Link>
               </li>

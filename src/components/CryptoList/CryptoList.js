@@ -3,7 +3,9 @@ import { CryptoContex } from "../../CryptoContex";
 import CryptoRow from "./CryptoRow";
 
 const CryptoList = () => {
-  const { crypto, loading } = useContext(CryptoContex);
+  const { crypto, loading, paginationInfo } = useContext(CryptoContex);
+
+  console.log("crypto", crypto.length);
 
   return (
     <div className="container fs-5">
@@ -51,7 +53,13 @@ const CryptoList = () => {
           role="status"
         ></div>
       ) : (
-        <CryptoRow crypto={crypto} />
+        <CryptoRow crypto={crypto} paginationInfo={paginationInfo} />
+      )}
+
+      {crypto.length === 0 && loading && (
+        <span className="mt-5 fs-5 d-flex justify-content-center text-danger fw-bold ">
+          No crypto here ;(
+        </span>
       )}
     </div>
   );
