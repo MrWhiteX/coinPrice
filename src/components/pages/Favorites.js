@@ -1,7 +1,8 @@
 import CryptoListHeader from "../CryptoList/CryptoListHeader";
 import { useContext, useEffect } from "react";
 import { CryptoContex } from "../../CryptoContex";
-import CryptoRow from "../CryptoList/CryptoRow";
+
+import CryptoRow from "../CryptoRow/CryptoRow";
 
 const Favorites = () => {
   const { crypto, reloadComponentValue } = useContext(CryptoContex);
