@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import CryptoDetails from "./components/pages/CryptoDetails";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import CryptoContexProvider from "./CryptoContex";
+import Favorites from "./components/pages/Favorites";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route path="/details/:id">
             <CryptoDetails />
+          </Route>
+          <Route path="/favorites">
+            <Favorites />
           </Route>
         </Router>
       </CryptoContexProvider>

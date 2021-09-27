@@ -1,12 +1,15 @@
 import React, { useState, useContext } from "react";
 import { CryptoContex } from "../../CryptoContex";
+//import { useDispatch } from "react-redux";
 
 const Searchbar = () => {
   const { searchHandler } = useContext(CryptoContex);
   const [term, setTerm] = useState("");
+  //const dispatch = useDispatch();
 
   const search = () => {
     searchHandler(term);
+    //dispatch({ type: "redux-test" });
   };
 
   return (

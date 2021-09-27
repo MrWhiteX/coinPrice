@@ -3,11 +3,14 @@ import Searchbar from "../Searchbar/Searchbar";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { CryptoContex } from "../../CryptoContex";
+//import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const location = useLocation();
+  // const reduxTest = useSelector((state) => state.name);
   const { getFavorites, top10Handler } = useContext(CryptoContex);
 
+  //console.log("reduxTest", reduxTest);
   const top10HandlerFn = () => {
     top10Handler();
   };
@@ -45,16 +48,19 @@ const Navbar = () => {
                   onClick={top10HandlerFn}
                   className="nav-link active"
                 >
-                  Top10
+                  Top 10
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
-                  to="/"
-                  onClick={getFavoritesFn}
+                  to="/favorites"
                   className="nav-link active"
+                  onClick={getFavoritesFn}
                 >
-                  Favourites
+                  Favourites{" "}
+                  <sup>
+                    <b>beta</b>
+                  </sup>
                 </Link>
               </li>
             </ul>

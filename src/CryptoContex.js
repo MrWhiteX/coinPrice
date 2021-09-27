@@ -6,17 +6,17 @@ export const CryptoContex = createContext();
 function CryptoContexProvider({ children }) {
   const [crypto, setCrypto] = useState([]);
   const [cryptoCopy, setcryptoCopy] = useState([]);
-  const [paginationInfo, setPaginationInfo] = useState({
-    unlimited: false,
-    favsite: false,
-  });
   const [loading, setLoading] = useState(false);
+  const [reloadComponentValue, setReloadComponentValue] = useState(false);
+
+  const loadingHandler = () => {
+    setCrypto(false);
+  };
 
   useEffect(() => {
     fetchCrypto().then((data) => {
       setCrypto(data);
       setcryptoCopy(data);
-
       setLoading(true);
     });
     const intervalID = setInterval(() => {
@@ -39,13 +39,13 @@ function CryptoContexProvider({ children }) {
 
   const top10Handler = () => {
     setCrypto(cryptoCopy);
-    setPaginationInfo({ favsite: false, unlimited: false });
+  };
+
+  const reloadComponent = () => {
+    setReloadComponentValue(!reloadComponentValue);
   };
 
   const getFavorites = () => {
-    setPaginationInfo(true);
-    setPaginationInfo({ favsite: true, unlimited: 128 });
-
     const dataFromLocalStorage = JSON.parse(localStorage.getItem("favourite"));
     const favoritesCrypto = [];
 
@@ -54,7 +54,6 @@ function CryptoContexProvider({ children }) {
         if (item.id === element.id) {
           favoritesCrypto.push(item);
         }
-
         return true;
       });
     });
@@ -69,7 +68,8 @@ function CryptoContexProvider({ children }) {
         searchHandler,
         getFavorites,
         top10Handler,
-        paginationInfo,
+        reloadComponent,
+        reloadComponentValue,
       }}
     >
       {children}

@@ -2,19 +2,29 @@ import React from "react";
 import Pagination from "./Pagination";
 
 const CryptoRow = (props) => {
-  const { crypto, paginationInfo } = props;
-  const sortedCrypto = crypto.sort(function (a, b) {
-    return a.rank - b.rank;
-  });
+  const { crypto, isSorted } = props;
+
+  const sortedCrypto = () =>
+    crypto.sort(function (a, b) {
+      return a.rank - b.rank;
+    });
+
+  const sortedCryptoBy7d = () =>
+    crypto.sort(function (a, b) {
+      return a.quotes.USD.price - b.quotes.USD.price;
+    });
+
+  console.log(sortedCryptoBy7d);
+  console.log(sortedCrypto);
+  console.log(isSorted);
 
   return (
     <>
       <Pagination
-        data={sortedCrypto}
+        data={isSorted ? sortedCryptoBy7d() : sortedCrypto()}
         pageLimit={5}
-        dataLimit={paginationInfo.unlimited ? paginationInfo.unlimited : 10}
+        dataLimit={10}
         crypto={crypto}
-        paginationInfo={paginationInfo.favsite}
       />
     </>
   );
