@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CryptoContex } from "../../CryptoContex";
 import CryptoListHeader from "./CryptoListHeader";
-import CryptoRow from "./CryptoRow";
+import Pagination from "../Pagination/Pagination";
+import CryptoRow from "../CryptoRow/CryptoRow";
 
 const CryptoList = () => {
   const { crypto, loading } = useContext(CryptoContex);
   const [isSorted, serIsSorted] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cryptoPerPage, setCryptoPerPage] = useState(10);
 
   useEffect(() => {
     // setStateCrypto(crypto);
@@ -15,6 +18,16 @@ const CryptoList = () => {
 
   const sortFn = () => {
     serIsSorted(!isSorted);
+  };
+
+  // Get current crypto
+  const indexOfLastCrypto = currentPage * cryptoPerPage;
+  const indexOfFirstCrypto = indexOfLastCrypto - cryptoPerPage;
+  const currentCrypto = crypto.slice(indexOfFirstCrypto, indexOfLastCrypto);
+
+  // Change page
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -27,7 +40,14 @@ const CryptoList = () => {
           role="status"
         ></div>
       ) : (
-        <CryptoRow isSorted={isSorted} crypto={crypto} />
+        <>
+          <CryptoRow isSorted={isSorted} crypto={currentCrypto} />
+          <Pagination
+            cryptoPerPage={cryptoPerPage}
+            totalCrypto={crypto.length / 50}
+            paginate={paginate}
+          />
+        </>
       )}
 
       {crypto.length === 0 && loading && (
