@@ -46,6 +46,7 @@ function CryptoContexProvider({ children }) {
 
   const top10Handler = () => {
     setCrypto(cryptoCopy);
+    setIsSearchTerm(false);
   };
 
   const reloadComponent = () => {

@@ -7,12 +7,14 @@ const Pagination = ({
   paginate,
   previousPage,
   nextPage,
+  currentPage,
+  crypto,
 }) => {
-  const pageNumbers = [];
+  // const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalCrypto / cryptoPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  // for (let i = 1; i <= Math.ceil(totalCrypto / cryptoPerPage); i++) {
+  //   pageNumbers.push(i);
+  // }
 
   const changePage = (number, e) => {
     e.preventDefault();
@@ -23,9 +25,13 @@ const Pagination = ({
     previousPage();
   };
 
-  const goToNextPage = () => {
-    nextPage();
+  const goToNextPage = (e) => {
+    if (e.target.className === "page-link") {
+      nextPage();
+    }
   };
+
+  const disabledPaginationRule = Math.ceil(crypto.length / 10);
 
   return (
     <div className="row">
@@ -39,10 +45,15 @@ const Pagination = ({
             </li>
             {getPaginationGroup().map((number) => {
               return (
-                <li key={number} className="page-item">
+                <li
+                  key={number}
+                  className={`page-item ${
+                    currentPage === number ? `active` : null
+                  }`}
+                >
                   <a
                     href="!#"
-                    className="page-link "
+                    className="page-link"
                     onClick={(e) => changePage(number, e)}
                   >
                     {number}
@@ -50,7 +61,12 @@ const Pagination = ({
                 </li>
               );
             })}
-            <li className="page-item" onClick={goToNextPage}>
+            <li
+              className={`page-item ${
+                currentPage === disabledPaginationRule ? `disabled` : null
+              } `}
+              onClick={(e) => goToNextPage(e)}
+            >
               <a className="page-link" href="#">
                 Next
               </a>
@@ -59,33 +75,6 @@ const Pagination = ({
         </div>
       </div>
     </div>
-    // <nav>
-    //   <ul className="pagination">
-    //     <li className="page-item">
-    //       <a className="page-link" href="#" onClick={goToPreviousPage}>
-    //         Previous
-    //       </a>
-    //     </li>
-    //     {getPaginationGroup().map((number) => {
-    //       return (
-    //         <li key={number} className="page-item">
-    //           <a
-    //             href="!#"
-    //             className="page-link "
-    //             onClick={(e) => changePage(number, e)}
-    //           >
-    //             {number}
-    //           </a>
-    //         </li>
-    //       );
-    //     })}
-    //     <li className="page-item">
-    //       <a className="page-link" href="#" onClick={goToNextPage}>
-    //         Next
-    //       </a>
-    //     </li>
-    //   </ul>
-    // </nav>
   );
 };
 

@@ -40,14 +40,17 @@ const CryptoList = () => {
 
   // Next page btn
   const nextPage = () => {
-    setCurrentPage((pageNumber) => pageNumber + 1);
+    if (currentPage !== crypto.length) {
+      setCurrentPage((pageNumber) => pageNumber + 1);
+    }
   };
 
   const getPaginationGroup = () => {
-    if (isSearchTerm === true) {
+    if (isSearchTerm) {
       setPageLimit(Math.ceil(crypto.length / 10));
+    } else {
+      setPageLimit(5);
     }
-
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
     return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
   };
@@ -71,6 +74,8 @@ const CryptoList = () => {
             getPaginationGroup={getPaginationGroup}
             previousPage={previousPage}
             nextPage={nextPage}
+            currentPage={currentPage}
+            crypto={crypto}
           />
         </>
       )}
