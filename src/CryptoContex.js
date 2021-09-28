@@ -6,20 +6,25 @@ export const CryptoContex = createContext();
 function CryptoContexProvider({ children }) {
   const [crypto, setCrypto] = useState([]);
   const [cryptoCopy, setcryptoCopy] = useState([]);
+  const [favouritesCrypto, setFavouritesCrypto] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [reloadComponentValue, setReloadComponentValue] = useState(false);
   const [isSearchTerm, setIsSearchTerm] = useState(false);
 
-  const loadingHandler = () => {
-    setCrypto(false);
-  };
+  useEffect(() => {
+    console.log("KRYPTOOOOOOOOOOOOOOO SIE ZMIENILO", crypto);
+    getFavorites();
+  }, [crypto]);
 
   useEffect(() => {
+    console.log("WYKONAŁAM SIĘ useEffect");
     fetchCrypto().then((data) => {
       setCrypto(data);
       setcryptoCopy(data);
       setLoading(true);
     });
+
     const intervalID = setInterval(() => {
       fetchCrypto().then((data) => {
         setCrypto(Object.values(data));
@@ -49,24 +54,30 @@ function CryptoContexProvider({ children }) {
 
   const getFavorites = () => {
     const dataFromLocalStorage = JSON.parse(localStorage.getItem("favourite"));
-    const favoritesCrypto = [];
+    const favoritesCryptos = [];
 
-    dataFromLocalStorage.forEach((element) => {
-      cryptoCopy.filter((item) => {
-        if (item.id === element.id) {
-          favoritesCrypto.push(item);
-        }
-        return true;
+    if (dataFromLocalStorage != null) {
+      dataFromLocalStorage.forEach((element) => {
+        console.log("element", element);
+        console.log("cryptoCopy", cryptoCopy);
+        crypto.filter((item) => {
+          if (item.id === element.id) {
+            favoritesCryptos.push(item);
+            console.log(item);
+          }
+          //  return true;
+        });
       });
-    });
 
-    setCrypto(favoritesCrypto);
+      setFavouritesCrypto(favoritesCryptos);
+    }
   };
   return (
     <CryptoContex.Provider
       value={{
         crypto,
         loading,
+        favouritesCrypto,
         searchHandler,
         getFavorites,
         top10Handler,

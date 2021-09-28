@@ -5,21 +5,12 @@ import { CryptoContex } from "../../CryptoContex";
 import CryptoRow from "../CryptoRow/CryptoRow";
 
 const Favorites = () => {
-  const { crypto, reloadComponentValue } = useContext(CryptoContex);
-
-  useEffect(
-    () =>
-      console.log(
-        "reloadComponentValuereloadComponentValue",
-        reloadComponentValue
-      ),
-    [reloadComponentValue]
-  );
+  const { favouritesCrypto, reloadComponentValue } = useContext(CryptoContex);
 
   return (
     <div className="container fs-5">
       <CryptoListHeader />
-      <CryptoRow crypto={crypto} />
+      <CryptoRow crypto={favouritesCrypto} />
     </div>
   );
 };
