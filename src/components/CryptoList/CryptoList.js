@@ -40,9 +40,10 @@ const CryptoList = () => {
 
   // Next page btn
   const nextPage = () => {
-    if (currentPage !== crypto.length) {
-      setCurrentPage((pageNumber) => pageNumber + 1);
-    }
+    // if (currentPage !== crypto.length) {
+    //   setCurrentPage((pageNumber) => pageNumber + 1);
+    // }
+    setCurrentPage((pageNumber) => pageNumber + 1);
   };
 
   const getPaginationGroup = () => {
