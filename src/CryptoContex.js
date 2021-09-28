@@ -8,6 +8,7 @@ function CryptoContexProvider({ children }) {
   const [cryptoCopy, setcryptoCopy] = useState([]);
   const [loading, setLoading] = useState(false);
   const [reloadComponentValue, setReloadComponentValue] = useState(false);
+  const [isSearchTerm, setIsSearchTerm] = useState(false);
 
   const loadingHandler = () => {
     setCrypto(false);
@@ -35,6 +36,7 @@ function CryptoContexProvider({ children }) {
         x.name.toLowerCase().includes(term.toLowerCase())
     );
     setCrypto(filtredCrypto);
+    setIsSearchTerm(true);
   };
 
   const top10Handler = () => {
@@ -70,6 +72,7 @@ function CryptoContexProvider({ children }) {
         top10Handler,
         reloadComponent,
         reloadComponentValue,
+        isSearchTerm,
       }}
     >
       {children}

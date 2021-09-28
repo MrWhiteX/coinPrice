@@ -28,7 +28,7 @@ const CryptoInfo = () => {
     <>
       <div className="row d-flex align-items-center fs-4 fs-sm-2 text-left">
         <div className="col-md-3">
-          <img src="../logo.jpeg" alt="" className="img-fluid" />
+          <img src="../logo.jpeg" alt="" className="img-fluid"></img>
         </div>
         <div className="col-md-3  ">
           <span className="">Market Cap</span>
