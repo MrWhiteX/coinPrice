@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CryptoContex } from "../../CryptoContex";
 import CryptoListHeader from "./CryptoListHeader";
-import Pagination from "../Pagination/Pagination";
 import CryptoRow from "../CryptoRow/CryptoRow";
+import Pagination from "../Pagination/Pagination";
 
 const CryptoList = () => {
-  const { crypto, loading } = useContext(CryptoContex);
+  const { isSearchTerm, crypto, loading } = useContext(CryptoContex);
   const [isSorted, serIsSorted] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [cryptoPerPage, setCryptoPerPage] = useState(10);
+  const [pageLimit, setPageLimit] = useState(5);
 
   useEffect(() => {
     // setStateCrypto(crypto);
@@ -30,6 +31,27 @@ const CryptoList = () => {
     setCurrentPage(pageNumber);
   };
 
+  // Previous page btn
+  const previousPage = () => {
+    if (currentPage >= 2) {
+      setCurrentPage((pageNumber) => pageNumber - 1);
+    }
+  };
+
+  // Next page btn
+  const nextPage = () => {
+    setCurrentPage((pageNumber) => pageNumber + 1);
+  };
+
+  const getPaginationGroup = () => {
+    if (isSearchTerm === true) {
+      setPageLimit(Math.ceil(crypto.length / 10));
+    }
+
+    let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+    return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
+  };
+
   return (
     <div className="container fs-5">
       <CryptoListHeader />
@@ -43,9 +65,12 @@ const CryptoList = () => {
         <>
           <CryptoRow isSorted={isSorted} crypto={currentCrypto} />
           <Pagination
-            cryptoPerPage={cryptoPerPage}
-            totalCrypto={crypto.length / 50}
+            // cryptoPerPage={cryptoPerPage}
+            // totalCrypto={crypto.length}
             paginate={paginate}
+            getPaginationGroup={getPaginationGroup}
+            previousPage={previousPage}
+            nextPage={nextPage}
           />
         </>
       )}
