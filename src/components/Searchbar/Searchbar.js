@@ -9,6 +9,7 @@ const Searchbar = () => {
 
   const search = () => {
     searchHandler(term);
+    setTerm("");
     //dispatch({ type: "redux-test" });
   };
 
