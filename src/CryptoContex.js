@@ -4,6 +4,7 @@ import { fetchCrypto } from "./components/CryptoList/Data/CryptoApi";
 export const CryptoContex = createContext();
 
 function CryptoContexProvider({ children }) {
+  const [currentPage, setCurrentPage] = useState(1);
   const [crypto, setCrypto] = useState([]);
   const [cryptoCopy, setcryptoCopy] = useState([]);
   const [favouritesCrypto, setFavouritesCrypto] = useState([]);
@@ -42,10 +43,12 @@ function CryptoContexProvider({ children }) {
     );
     setCrypto(filtredCrypto);
     setIsSearchTerm(true);
+    setCurrentPage(1);
   };
 
   const top10Handler = () => {
     setCrypto(cryptoCopy);
+    setCurrentPage(1);
     setIsSearchTerm(false);
   };
 
@@ -73,6 +76,27 @@ function CryptoContexProvider({ children }) {
       setFavouritesCrypto(favoritesCryptos);
     }
   };
+
+  // Change page in pagination
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Previous page btn in pagination
+  const previousPage = () => {
+    if (currentPage >= 2) {
+      setCurrentPage((pageNumber) => pageNumber - 1);
+    }
+  };
+
+  // Next page btn
+  const nextPage = () => {
+    // if (currentPage !== crypto.length) {
+    //   setCurrentPage((pageNumber) => pageNumber + 1);
+    // }
+    setCurrentPage((pageNumber) => pageNumber + 1);
+  };
+
   return (
     <CryptoContex.Provider
       value={{
@@ -85,6 +109,10 @@ function CryptoContexProvider({ children }) {
         reloadComponent,
         reloadComponentValue,
         isSearchTerm,
+        currentPage,
+        paginate,
+        previousPage,
+        nextPage,
       }}
     >
       {children}

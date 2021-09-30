@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { CryptoContex } from "../../CryptoContex";
 
-const Pagination = ({
-  getPaginationGroup,
-  cryptoPerPage,
-  totalCrypto,
-  paginate,
-  previousPage,
-  nextPage,
-  currentPage,
-  crypto,
-}) => {
-  // const pageNumbers = [];
+const Pagination = () => {
+  const [pageLimit, setPageLimit] = useState(5);
+  const {
+    currentPage,
+    paginate,
+    previousPage,
+    nextPage,
+    crypto,
+    isSearchTerm,
+  } = useContext(CryptoContex);
 
-  // for (let i = 1; i <= Math.ceil(totalCrypto / cryptoPerPage); i++) {
-  //   pageNumbers.push(i);
-  // }
+  const getPaginationGroup = () => {
+    let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+    return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
+  };
+
+  useEffect(() => {
+    if (isSearchTerm) {
+      setPageLimit(Math.ceil(crypto.length / 10));
+    } else {
+      setPageLimit(5);
+    }
+  }, [crypto]);
 
   const changePage = (number, e) => {
     e.preventDefault();
