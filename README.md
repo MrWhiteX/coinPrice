@@ -15,6 +15,6 @@ npm start
 
 - React 17.0.2
 - React-router-dom 5.3.0
-- BootStrap
+- Bootstrap
 - Rest API
 
