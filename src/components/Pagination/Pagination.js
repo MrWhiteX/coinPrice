@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { CryptoContex } from "../../CryptoContex";
 
-const Pagination = () => {
+const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
   const [pageLimit, setPageLimit] = useState(5);
   const {
     currentPage,
@@ -11,6 +11,7 @@ const Pagination = () => {
     crypto,
     isSearchTerm,
   } = useContext(CryptoContex);
+  const [test, setTest] = useState(10);
 
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
@@ -42,48 +43,71 @@ const Pagination = () => {
 
   const disabledPaginationRule = Math.ceil(crypto.length / 10);
 
+  const showRowsHandler = (e) => {
+    changeCryptoPerPage(e.target.value);
+  };
+
   return (
-    <div className="row">
-      <div className="col-12 d-flex justify-content-center">
-        <div className="pagination mt-5 mb-5">
-          <ul className="pagination">
-            <li className="page-item" onClick={goToPreviousPage}>
-              <a className="page-link" href="#">
-                Previous
-              </a>
-            </li>
-            {getPaginationGroup().map((number) => {
-              return (
-                <li
-                  key={number}
-                  className={`page-item ${
-                    currentPage === number ? `active` : null
-                  }`}
-                >
-                  <a
-                    href="!#"
-                    className="page-link"
-                    onClick={(e) => changePage(number, e)}
+    <>
+      <div className="row">
+        <div className="col-12 d-flex justify-content-center ">
+          <div className="pagination mt-5 mb-5">
+            <ul className="pagination">
+              <li className="page-item" onClick={goToPreviousPage}>
+                <a className="page-link" href="#">
+                  Previous
+                </a>
+              </li>
+              {getPaginationGroup().map((number) => {
+                return (
+                  <li
+                    key={number}
+                    className={`page-item ${
+                      currentPage === number ? `active` : null
+                    }`}
                   >
-                    {number}
-                  </a>
-                </li>
-              );
-            })}
-            <li
-              className={`page-item ${
-                currentPage === disabledPaginationRule ? `disabled` : null
-              } `}
-              onClick={(e) => goToNextPage(e)}
-            >
-              <a className="page-link" href="#">
-                Next
-              </a>
-            </li>
-          </ul>
+                    <a
+                      href="!#"
+                      className="page-link"
+                      onClick={(e) => changePage(number, e)}
+                    >
+                      {number}
+                    </a>
+                  </li>
+                );
+              })}
+              <li
+                className={`page-item ${
+                  currentPage === disabledPaginationRule ? `disabled` : null
+                } `}
+                onClick={(e) => goToNextPage(e)}
+              >
+                <a className="page-link" href="#">
+                  Next
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+      <div style={{ height: "200px" }}>
+        <div className="d-none d-md-flex justify-content-end align-items-center flex-row mt-3 ">
+          Show rows:
+          <div className="ms-3">
+            <select
+              value={cryptoPerPage}
+              onChange={(e) => showRowsHandler(e)}
+              className="form-select"
+            >
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
