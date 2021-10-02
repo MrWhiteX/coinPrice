@@ -1,6 +1,6 @@
-# Countries App
+# CoinPrice
 
-"Countries" is a React application used to display information about the countries of the world.
+"CoinPrice" is a React application used to display information about the cryptocurrency.
 
 ## Installation
 
