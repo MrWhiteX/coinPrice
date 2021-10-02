@@ -7,9 +7,13 @@ const Searchbar = () => {
   const [term, setTerm] = useState("");
   //const dispatch = useDispatch();
 
-  const search = () => {
-    searchHandler(term);
-    setTerm("");
+  const search = (e) => {
+    if (term === "") {
+    } else {
+      searchHandler(term);
+      setTerm("");
+    }
+
     //dispatch({ type: "redux-test" });
   };
 

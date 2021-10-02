@@ -26,8 +26,16 @@ const CryptoList = () => {
   const indexOfFirstCrypto = indexOfLastCrypto - cryptoPerPage;
   const currentCrypto = crypto.slice(indexOfFirstCrypto, indexOfLastCrypto);
 
+  const changeCryptoPerPage = (rows) => {
+    if (isSearchTerm === true) {
+      setCryptoPerPage(10);
+    } else {
+      setCryptoPerPage(rows);
+    }
+  };
+
   return (
-    <div className="container fs-5">
+    <div className="container fs-5  ">
       <CryptoListHeader />
 
       {loading === false ? (
@@ -38,7 +46,10 @@ const CryptoList = () => {
       ) : (
         <>
           <CryptoRow isSorted={isSorted} crypto={currentCrypto} />
-          <Pagination />
+          <Pagination
+            cryptoPerPage={cryptoPerPage}
+            changeCryptoPerPage={changeCryptoPerPage}
+          />
         </>
       )}
 
