@@ -4,7 +4,7 @@
 
 ## Installation
 
-Use the package manager [npm](https://nodejs.org/en/) to install Countries.
+Use the package manager [npm](https://nodejs.org/en/) to install CoinPrice.
 
 ```bash
 npm install
