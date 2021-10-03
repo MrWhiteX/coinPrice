@@ -5,7 +5,7 @@ import { CryptoContex } from "../../CryptoContex";
 import CryptoRow from "../CryptoRow/CryptoRow";
 
 const Favorites = () => {
-  const { favouritesCrypto, reloadComponentValue } = useContext(CryptoContex);
+  const { favouritesCrypto } = useContext(CryptoContex);
 
   return (
     <div className="container fs-5">

@@ -9,7 +9,6 @@ const CryptoList = () => {
     useContext(CryptoContex);
   const [isSorted, serIsSorted] = useState(false);
   const [cryptoPerPage, setCryptoPerPage] = useState(10);
-  const [pageLimit, setPageLimit] = useState(5);
 
   // useEffect(() => {
   //   // setStateCrypto(crypto);
