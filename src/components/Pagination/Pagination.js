@@ -11,7 +11,6 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
     crypto,
     isSearchTerm,
   } = useContext(CryptoContex);
-  const [test, setTest] = useState(10);
 
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
@@ -24,7 +23,7 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
     } else {
       setPageLimit(5);
     }
-  }, [crypto]);
+  }, []);
 
   const changePage = (number, e) => {
     e.preventDefault();
@@ -91,7 +90,11 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
         </div>
       </div>
       <div style={{ height: "200px" }}>
-        <div className="d-none d-md-flex justify-content-end align-items-center flex-row mt-3 ">
+        <div
+          className={`d-none ${
+            isSearchTerm ? `d-md-none` : `d-md-flex`
+          } justify-content-end align-items-center flex-row mt-3`}
+        >
           Show rows:
           <div className="ms-3">
             <select
