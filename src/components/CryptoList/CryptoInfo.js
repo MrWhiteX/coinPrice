@@ -1,10 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fetchInfo } from "./Data/CryptoApi";
+import { ConvertContex } from "../../ConvertContext";
 
 const CryptoInfo = () => {
   const [info, setInfo] = useState("Wczytywanie danych");
   const [infoLoading, setInfoLoading] = useState(false);
+  const { dataCurrency, actualCurrency } = useContext(ConvertContex);
 
   useEffect(() => {
     setInfoLoading(true);
@@ -32,11 +34,19 @@ const CryptoInfo = () => {
         </div>
         <div className="col-md-3  ">
           <span className="">Market Cap</span>
-          <p className="fw-bold">{info.market_cap_usd} $</p>
+          <p className="fw-bold">
+            {actualCurrency === "USD"
+              ? `${info.market_cap_usd} $`
+              : `${info.market_cap_usd * dataCurrency.USD} PLN`}
+          </p>
         </div>
         <div className="col-md-3 ">
           24h Vol:
-          <p className="fw-bold">{info.volume_24h_usd} $</p>
+          <p className="fw-bold">
+            {actualCurrency === "USD"
+              ? `${info.volume_24h_usd} $`
+              : `${info.volume_24h_usd * dataCurrency.USD} PLN`}
+          </p>
         </div>
         <div className="col-md-3  ">
           BTC Dominance:
