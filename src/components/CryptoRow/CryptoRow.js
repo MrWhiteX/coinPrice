@@ -10,11 +10,15 @@ import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CryptoContex } from "../../CryptoContex";
+import { ConvertContex } from "../../ConvertContext";
 
 const CryptoRow = ({ crypto }) => {
   const [isFav, setIsFav] = useState(true);
   const idCryptoFav = [];
   const { reloadComponent } = useContext(CryptoContex);
+  const { dataCurrency, actualCurrency } = useContext(ConvertContex);
+
+  console.log(`testujemy`, dataCurrency.USD);
 
   const localData = JSON.parse(localStorage.getItem("favourite"));
 
@@ -89,12 +93,32 @@ const CryptoRow = ({ crypto }) => {
 
             <div className="col-5 col-sm-2">
               <span className="d-flex justify-content-end fw-bold">
-                {currency.quotes.USD.price > 1
-                  ? currency.quotes.USD.price.toFixed(2)
-                  : currency.quotes.USD.price < 0.0001
-                  ? currency.quotes.USD.price.toFixed(8)
-                  : currency.quotes.USD.price.toFixed(4)}{" "}
-                USD
+                {actualCurrency === "USD" ? (
+                  <>
+                    {currency.quotes.USD.price > 1
+                      ? currency.quotes.USD.price.toFixed(2)
+                      : currency.quotes.USD.price < 0.0001
+                      ? currency.quotes.USD.price.toFixed(8)
+                      : currency.quotes.USD.price.toFixed(4)}{" "}
+                  </>
+                ) : null}
+                {actualCurrency === "PLN" ? (
+                  <>
+                    {currency.quotes.USD.price > 1
+                      ? (currency.quotes.USD.price * dataCurrency.USD).toFixed(
+                          2
+                        )
+                      : currency.quotes.USD.price * dataCurrency.USD < 0.0001
+                      ? (currency.quotes.USD.price * dataCurrency.USD).toFixed(
+                          8
+                        )
+                      : (currency.quotes.USD.price * dataCurrency.USD).toFixed(
+                          4
+                        )}
+                  </>
+                ) : null}
+
+                {actualCurrency}
               </span>
             </div>
 
