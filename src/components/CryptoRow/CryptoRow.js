@@ -118,7 +118,7 @@ const CryptoRow = ({ crypto }) => {
                   </>
                 ) : null}
 
-                {actualCurrency}
+                <span className="ms-2">{actualCurrency}</span>
               </span>
             </div>
 
