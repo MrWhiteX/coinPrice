@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { CryptoContex } from "../../CryptoContex";
-import { ConvertContex } from "../../ConvertContext";
+import { CryptoContex } from "../../context/CryptoContex";
+import { ConvertContex } from "../../context/ConvertContext";
 import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";

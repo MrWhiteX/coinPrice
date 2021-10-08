@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { ConvertContex } from "../../ConvertContext";
+import { ConvertContex } from "../../context/ConvertContext";
 
 const CurrencyConventer = () => {
   const { changeCurrency } = useContext(ConvertContex);

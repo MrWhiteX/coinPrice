@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { CryptoContex } from "../../CryptoContex";
+import { CryptoContex } from "../../context/CryptoContex";
 //import { useDispatch } from "react-redux";
 
 const Searchbar = () => {

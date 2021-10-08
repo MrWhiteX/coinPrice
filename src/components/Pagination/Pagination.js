@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { CryptoContex } from "../../CryptoContex";
+import { CryptoContex } from "../../context/CryptoContex";
 
 const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
   const [pageLimit, setPageLimit] = useState(5);
@@ -23,7 +23,7 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
     } else {
       setPageLimit(5);
     }
-  }, []);
+  }, [crypto]);
 
   const changePage = (number, e) => {
     e.preventDefault();

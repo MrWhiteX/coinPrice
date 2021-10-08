@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import fetchCurrencies from "./components/CurrencyConventer/data/NBPApi";
+import fetchCurrencies from "../components/CurrencyConventer/data/NBPApi";
 
 export const ConvertContex = createContext();
 

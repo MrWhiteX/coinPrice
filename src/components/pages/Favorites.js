@@ -1,6 +1,6 @@
 import CryptoListHeader from "../CryptoList/CryptoListHeader";
 import { useContext, useEffect } from "react";
-import { CryptoContex } from "../../CryptoContex";
+import { CryptoContex } from "../../context/CryptoContex";
 
 import CryptoRow from "../CryptoRow/CryptoRow";
 
