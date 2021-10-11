@@ -1,24 +1,17 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import {
-  faChevronDown,
-  faChevronUp,
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CryptoContex } from "../../CryptoContex";
-import { ConvertContex } from "../../ConvertContext";
+import { CryptoContex } from "../../context/CryptoContex";
+import { ConvertContex } from "../../context/ConvertContext";
 
 const CryptoRow = ({ crypto }) => {
   const [isFav, setIsFav] = useState(true);
   const idCryptoFav = [];
   const { reloadComponent } = useContext(CryptoContex);
   const { dataCurrency, actualCurrency } = useContext(ConvertContex);
-
-  console.log(`testujemy`, dataCurrency.USD);
 
   const localData = JSON.parse(localStorage.getItem("favourite"));
 

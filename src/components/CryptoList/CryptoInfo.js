@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { fetchInfo } from "./Data/CryptoApi";
-import { ConvertContex } from "../../ConvertContext";
+import { ConvertContex } from "../../context/ConvertContext";
 
 const CryptoInfo = () => {
   const [info, setInfo] = useState("Wczytywanie danych");

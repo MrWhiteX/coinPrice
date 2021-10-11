@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { fetchCrypto } from "./components/CryptoList/Data/CryptoApi";
+import { fetchCrypto } from "../components/CryptoList/Data/CryptoApi";
 
 export const CryptoContex = createContext();
 
@@ -14,12 +14,10 @@ function CryptoContexProvider({ children }) {
   const [isSearchTerm, setIsSearchTerm] = useState(false);
 
   useEffect(() => {
-    console.log("KRYPTOOOOOOOOOOOOOOO SIE ZMIENILO", crypto);
     getFavorites();
   }, [crypto]);
 
   useEffect(() => {
-    console.log("WYKONAŁAM SIĘ useEffect");
     fetchCrypto().then((data) => {
       setCrypto(data);
       setcryptoCopy(data);
@@ -62,12 +60,9 @@ function CryptoContexProvider({ children }) {
 
     if (dataFromLocalStorage != null) {
       dataFromLocalStorage.forEach((element) => {
-        console.log("element", element);
-        console.log("cryptoCopy", cryptoCopy);
         crypto.filter((item) => {
           if (item.id === element.id) {
             favoritesCryptos.push(item);
-            console.log(item);
           }
           //  return true;
         });

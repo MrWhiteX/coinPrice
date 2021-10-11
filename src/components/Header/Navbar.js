@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import Searchbar from "../Searchbar/Searchbar";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { CryptoContex } from "../../CryptoContex";
-//import { useSelector } from "react-redux";
+import { CryptoContex } from "../../context/CryptoContex";
+import useAuth from "../../hooks/useAuth";
+import useWebsiteTitle from "../../hooks/useWebsiteTitle";
 
 const Navbar = () => {
+  const [auth, setAuth] = useAuth();
+  const setTitle = useWebsiteTitle();
   const location = useLocation();
   // const reduxTest = useSelector((state) => state.name);
   const { getFavorites, top10Handler } = useContext(CryptoContex);
@@ -13,12 +16,17 @@ const Navbar = () => {
   //console.log("reduxTest", reduxTest);
   const top10HandlerFn = () => {
     top10Handler();
+    setTitle("CoinPrice.pl - Main Page");
   };
 
   const getFavoritesFn = () => {
     getFavorites();
   };
 
+  const logout = (e) => {
+    e.preventDefault();
+    setAuth(false);
+  };
   return (
     <div className="mt-3">
       <nav className="navbar navbar-expand navbar-light bg-light">
@@ -43,26 +51,58 @@ const Navbar = () => {
           >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 fw-bold fs-4  ">
               <li className="nav-item">
-                <Link
+                <NavLink
+                  exact
                   to="/"
                   onClick={top10HandlerFn}
-                  className="nav-link active"
+                  className="nav-link"
+                  activeClassName="active text-decoration-underline"
                 >
                   Top 10
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link
+                <NavLink
                   to="/favorites"
-                  className="nav-link active"
+                  className="nav-link"
+                  activeClassName=" active text-decoration-underline"
                   onClick={getFavoritesFn}
                 >
                   Favourites{" "}
                   <sup>
                     <b>beta</b>
                   </sup>
-                </Link>
+                </NavLink>
               </li>
+
+              {auth ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/" onClick={logout}>
+                      Logout
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="nav-link"
+                      activeClassName="active text-decoration-underline"
+                      to="/profile"
+                    >
+                      Profile
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active text-decoration-underline"
+                    to="/login"
+                  >
+                    Login
+                  </NavLink>
+                </li>
+              )}
             </ul>
             <span style={{ marginRight: "10px" }}>
               Powered by <b>Coinpaprika</b>

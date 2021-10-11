@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { CryptoContex } from "../../CryptoContex";
+import React, { useContext, useState } from "react";
+import { CryptoContex } from "../../context/CryptoContex";
 import CryptoListHeader from "./CryptoListHeader";
 import CryptoRow from "../CryptoRow/CryptoRow";
 import Pagination from "../Pagination/Pagination";

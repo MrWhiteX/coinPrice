@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://driveusa.pl/$1 [R,L]
+RewriteRule ^(.*)$ https://coinprice.pl/$1 [R,L]
 <IfModule mod_expires.c>
 ExpiresActive On
 ExpiresByType text/css "access 1 month"
