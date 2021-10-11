@@ -4,10 +4,11 @@ import { Link, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { CryptoContex } from "../../context/CryptoContex";
 import useAuth from "../../hooks/useAuth";
+import useWebsiteTitle from "../../hooks/useWebsiteTitle";
 
 const Navbar = () => {
   const [auth, setAuth] = useAuth();
-
+  const setTitle = useWebsiteTitle();
   const location = useLocation();
   // const reduxTest = useSelector((state) => state.name);
   const { getFavorites, top10Handler } = useContext(CryptoContex);
@@ -15,22 +16,17 @@ const Navbar = () => {
   //console.log("reduxTest", reduxTest);
   const top10HandlerFn = () => {
     top10Handler();
+    setTitle("CoinPrice.pl - Main Page");
   };
 
   const getFavoritesFn = () => {
     getFavorites();
   };
 
-  const login = (e) => {
-    e.preventDefault();
-    setAuth(true);
-  };
-
   const logout = (e) => {
     e.preventDefault();
     setAuth(false);
   };
-
   return (
     <div className="mt-3">
       <nav className="navbar navbar-expand navbar-light bg-light">
@@ -87,16 +83,24 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/profile">
+                    <NavLink
+                      className="nav-link"
+                      activeClassName="active text-decoration-underline"
+                      to="/profile"
+                    >
                       Profile
                     </NavLink>
                   </li>
                 </>
               ) : (
                 <li className="nav-item">
-                  <Link className="nav-link " to="/login" onClick={login}>
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active text-decoration-underline"
+                    to="/login"
+                  >
                     Login
-                  </Link>
+                  </NavLink>
                 </li>
               )}
             </ul>

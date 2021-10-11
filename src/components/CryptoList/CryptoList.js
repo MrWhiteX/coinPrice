@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { CryptoContex } from "../../context/CryptoContex";
 import CryptoListHeader from "./CryptoListHeader";
 import CryptoRow from "../CryptoRow/CryptoRow";

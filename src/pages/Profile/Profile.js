@@ -2,9 +2,11 @@ import { useRouteMatch, NavLink, Route, Switch } from "react-router-dom";
 import ProfileDetails from "./ProfileDetails";
 import AirDrop from "../Profile/AirDrop";
 import NotFound from "../NotFound/NotFound";
+import useWebsiteTitle from "../../hooks/useWebsiteTitle";
 
 const Profile = () => {
   const { path, url } = useRouteMatch();
+  useWebsiteTitle(`CoinPrice.pl - Profile`);
 
   return (
     <div className="container mt-5">

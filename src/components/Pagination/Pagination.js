@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { CryptoContex } from "../../context/CryptoContex";
 
 const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
+  const [changeRows, setChangeRows] = useState(20);
   const [pageLimit, setPageLimit] = useState(5);
   const {
     currentPage,
@@ -44,6 +45,7 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
 
   const showRowsHandler = (e) => {
     changeCryptoPerPage(e.target.value);
+    setChangeRows(e.target.value);
   };
 
   return (
