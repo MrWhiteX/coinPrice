@@ -4,14 +4,21 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CryptoContex } from "../../context/CryptoContex";
 import { ConvertContex } from "../../context/ConvertContext";
+import { useDispatch } from "react-redux";
+import {
+  getReloadComponentValue,
+  reloadComponent,
+} from "../../store/cryptoSlice";
+import { useSelector } from "react-redux";
 
 const CryptoRow = ({ crypto }) => {
   const [isFav, setIsFav] = useState(true);
   const idCryptoFav = [];
-  const { reloadComponent } = useContext(CryptoContex);
   const { dataCurrency, actualCurrency } = useContext(ConvertContex);
+
+  const dispatch = useDispatch();
+  const reloadComponentValue = useSelector(getReloadComponentValue);
 
   const localData = JSON.parse(localStorage.getItem("favourite"));
 
@@ -49,7 +56,7 @@ const CryptoRow = ({ crypto }) => {
       ) {
         console.log("has test1");
         checkIdAlreadyExist(currency);
-        reloadComponent();
+        dispatch(reloadComponent(!reloadComponentValue));
       } else {
         console.log("moge dodac");
         dataFromLocalStorage.push(saveCurrencyToLocalStorage);

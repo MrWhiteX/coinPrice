@@ -1,22 +1,30 @@
-import React, { useState, useEffect, useContext } from "react";
-import { CryptoContex } from "../../context/CryptoContex";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  currentPaginationPage,
+  getAllCrypto,
+  getCurrentPaginationPage,
+  getIsSearchTerm,
+} from "../../store/cryptoSlice";
 
 const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
   const [changeRows, setChangeRows] = useState(20);
   const [pageLimit, setPageLimit] = useState(5);
-  const {
-    currentPage,
-    paginate,
-    previousPage,
-    nextPage,
-    crypto,
-    isSearchTerm,
-  } = useContext(CryptoContex);
+
+  const dispatch = useDispatch();
+
+  const crypto = useSelector(getAllCrypto);
+  const currentPage = useSelector(getCurrentPaginationPage);
+  const pageNumber = useSelector(getCurrentPaginationPage);
+  const isSearchTerm = useSelector(getIsSearchTerm);
 
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
     return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
   };
+
+  console.log(getPaginationGroup());
 
   useEffect(() => {
     if (isSearchTerm) {
@@ -28,16 +36,21 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
 
   const changePage = (number, e) => {
     e.preventDefault();
-    paginate(number);
+    // paginate(number);
+    dispatch(currentPaginationPage(number));
   };
 
   const goToPreviousPage = () => {
-    previousPage();
+    if (currentPage >= 2) {
+      const page = pageNumber - 1;
+      dispatch(currentPaginationPage(page));
+    }
   };
 
   const goToNextPage = (e) => {
     if (e.target.className === "page-link") {
-      nextPage();
+      const page = pageNumber + 1;
+      dispatch(currentPaginationPage(page));
     }
   };
 

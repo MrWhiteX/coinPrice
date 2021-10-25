@@ -1,23 +1,21 @@
-const fetchCrypto = () => {
-  return fetch(`https://api.coinpaprika.com/v1/tickers`)
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
-      // return data.filter((el) => {
+import { cryptoAxios } from "../../../axios";
 
-      //   // if (el.rank <= 50) {
-      //   //   return el;
-      //   // }
-      // });
-    });
+const fetchCrypto = async () => {
+  try {
+    const res = await cryptoAxios.get("/tickers");
+    return res.data;
+  } catch (ex) {
+    console.log(ex.response);
+  }
 };
 
-const fetchInfo = () => {
-  return fetch(`https://api.coinpaprika.com/v1/global`)
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
-    });
+const fetchInfo = async () => {
+  try {
+    const res = await cryptoAxios.get("/global");
+    return res.data;
+  } catch (ex) {
+    console.log(ex.response);
+  }
 };
 
 export { fetchCrypto, fetchInfo };

@@ -95,19 +95,19 @@ function CryptoContexProvider({ children }) {
   return (
     <CryptoContex.Provider
       value={{
-        crypto,
-        loading,
+        // crypto,
+        // loading,
         favouritesCrypto,
-        searchHandler,
+        // searchHandler,
         getFavorites,
-        top10Handler,
-        reloadComponent,
-        reloadComponentValue,
-        isSearchTerm,
-        currentPage,
-        paginate,
-        previousPage,
-        nextPage,
+        // top10Handler,
+        // reloadComponent,
+        // reloadComponentValue,
+        // isSearchTerm,
+        // currentPage,
+        // paginate,
+        // previousPage,
+        // nextPage,
       }}
     >
       {children}
