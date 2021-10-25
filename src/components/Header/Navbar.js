@@ -1,22 +1,33 @@
 import React, { useContext } from "react";
+import { CryptoContex } from "../../context/CryptoContex";
 import Searchbar from "../Searchbar/Searchbar";
 import { Link, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { CryptoContex } from "../../context/CryptoContex";
 import useAuth from "../../hooks/useAuth";
 import useWebsiteTitle from "../../hooks/useWebsiteTitle";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  addCrypto,
+  currentPaginationPage,
+  getCryptoCopy,
+  isSearchTerm,
+} from "../../store/cryptoSlice";
 
 const Navbar = () => {
   const [auth, setAuth] = useAuth();
   const setTitle = useWebsiteTitle();
   const location = useLocation();
-  // const reduxTest = useSelector((state) => state.name);
-  const { getFavorites, top10Handler } = useContext(CryptoContex);
+  const { getFavorites } = useContext(CryptoContex);
 
-  //console.log("reduxTest", reduxTest);
-  const top10HandlerFn = () => {
-    top10Handler();
+  const dispatch = useDispatch();
+  const cryptoCopy = useSelector(getCryptoCopy);
+
+  const top10Handler = () => {
     setTitle("CoinPrice.pl - Main Page");
+    dispatch(addCrypto(cryptoCopy));
+    dispatch(currentPaginationPage(1));
+    dispatch(isSearchTerm(false));
   };
 
   const getFavoritesFn = () => {
@@ -54,7 +65,7 @@ const Navbar = () => {
                 <NavLink
                   exact
                   to="/"
-                  onClick={top10HandlerFn}
+                  onClick={top10Handler}
                   className="nav-link"
                   activeClassName="active text-decoration-underline"
                 >

@@ -1,11 +1,18 @@
-import React, { useState, useContext } from "react";
-import { CryptoContex } from "../../context/CryptoContex";
-//import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  addCrypto,
+  currentPaginationPage,
+  getCryptoCopy,
+  isSearchTerm,
+} from "../../store/cryptoSlice";
 
 const Searchbar = () => {
-  const { searchHandler } = useContext(CryptoContex);
   const [term, setTerm] = useState("");
-  //const dispatch = useDispatch();
+  const cryptoCopy = useSelector(getCryptoCopy);
+
+  const dispatch = useDispatch();
 
   const search = (e) => {
     if (term === "") {
@@ -13,8 +20,17 @@ const Searchbar = () => {
       searchHandler(term);
       setTerm("");
     }
+  };
 
-    //dispatch({ type: "redux-test" });
+  const searchHandler = (term) => {
+    const filtredCrypto = [...cryptoCopy].filter(
+      (x) =>
+        x.symbol.toLowerCase().includes(term.toLowerCase()) ||
+        x.name.toLowerCase().includes(term.toLowerCase())
+    );
+    dispatch(addCrypto(filtredCrypto));
+    dispatch(isSearchTerm(true));
+    dispatch(currentPaginationPage(1));
   };
 
   return (

@@ -49,7 +49,6 @@ function App() {
                       isAuthenticated={state.isAuthenticated}
                       component={Profile}
                     />
-
                     <Route path="/details/:id" component={CryptoDetails} />
                     <Route path="/favorites" component={Favorites} />
                     {/* <Route path="/profile" component={Profile} /> */}
