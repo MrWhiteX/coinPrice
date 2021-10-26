@@ -7,6 +7,11 @@ const initialState = {
   isSearchTerm: false,
   currentPaginationPage: 1,
   reloadComponentValue: false,
+  dataCurrency: {
+    USD: 0,
+    EUR: 0,
+  },
+  actualCurrency: "USD",
 };
 
 const cryptoSlice = createSlice({
@@ -31,6 +36,12 @@ const cryptoSlice = createSlice({
     reloadComponent: (state, { payload }) => {
       state.reloadComponent = payload;
     },
+    currency: (state, { payload }) => {
+      state.dataCurrency = payload;
+    },
+    setActualCurrency: (state, { payload }) => {
+      state.actualCurrency = payload;
+    },
   },
   // extraReducers: {},
 });
@@ -42,6 +53,8 @@ export const {
   isSearchTerm,
   currentPaginationPage,
   reloadComponent,
+  currency,
+  setActualCurrency,
 } = cryptoSlice.actions;
 export const getAllCrypto = (state) => state.crypto.crypto;
 export const getCryptoCopy = (state) => state.crypto.copyCrypto;
@@ -50,4 +63,6 @@ export const getIsSearchTerm = (state) => state.crypto.isSearchTerm;
 export const getCurrentPaginationPage = (state) =>
   state.crypto.currentPaginationPage;
 export const getReloadComponentValue = (state) => state.crypto.reloadComponent;
+export const getCurrency = (state) => state.crypto.dataCurrency;
+export const getActualCurrency = (state) => state.crypto.actualCurrency;
 export default cryptoSlice.reducer;

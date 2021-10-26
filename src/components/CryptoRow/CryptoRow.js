@@ -1,12 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ConvertContex } from "../../context/ConvertContext";
 import { useDispatch } from "react-redux";
 import {
+  getActualCurrency,
+  getCurrency,
   getReloadComponentValue,
   reloadComponent,
 } from "../../store/cryptoSlice";
@@ -15,9 +16,10 @@ import { useSelector } from "react-redux";
 const CryptoRow = ({ crypto }) => {
   const [isFav, setIsFav] = useState(true);
   const idCryptoFav = [];
-  const { dataCurrency, actualCurrency } = useContext(ConvertContex);
 
   const dispatch = useDispatch();
+  const dataCurrency = useSelector(getCurrency);
+  const actualCurrency = useSelector(getActualCurrency);
   const reloadComponentValue = useSelector(getReloadComponentValue);
 
   const localData = JSON.parse(localStorage.getItem("favourite"));

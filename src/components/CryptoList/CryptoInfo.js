@@ -1,26 +1,34 @@
 import React from "react";
-import { useEffect, useState, useContext } from "react";
-import { fetchInfo } from "./Data/CryptoApi";
-import { ConvertContex } from "../../context/ConvertContext";
+import { useEffect, useState } from "react";
+import { cryptoAxios } from "../../axios";
+import { useSelector } from "react-redux";
+import { getActualCurrency, getCurrency } from "../../store/cryptoSlice";
 
 const CryptoInfo = () => {
   const [info, setInfo] = useState("Wczytywanie danych");
   const [infoLoading, setInfoLoading] = useState(false);
-  const { dataCurrency, actualCurrency } = useContext(ConvertContex);
+
+  const dataCurrency = useSelector(getCurrency);
+  const actualCurrency = useSelector(getActualCurrency);
 
   useEffect(() => {
     setInfoLoading(true);
   }, []);
 
   useEffect(() => {
-    fetchInfo().then((data) => {
-      setInfo(data);
-    });
+    const fetchInfo = async () => {
+      try {
+        const response = await cryptoAxios.get("/global");
+        setInfo(response.data);
+      } catch (ex) {
+        console.log(ex.response);
+      }
+    };
+
+    fetchInfo();
 
     const intervalID = setInterval(() => {
-      fetchInfo().then((data) => {
-        setInfo(data);
-      });
+      fetchInfo();
     }, 114000);
 
     return () => clearInterval(intervalID);

@@ -8,4 +8,8 @@ const userAxios = axios.create({
 const cryptoAxios = axios.create({
   baseURL: "https://api.coinpaprika.com/v1",
 });
-export { userAxios, cryptoAxios };
+
+const currencyAxios = axios.create({
+  baseURL: "https://api.nbp.pl/api/exchangerates/tables",
+});
+export { userAxios, cryptoAxios, currencyAxios };

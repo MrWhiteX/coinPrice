@@ -11,7 +11,6 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import AuthenticatedRoute from "./components/AuthenticatedRoute/AuthenticatedRoute";
 import CryptoContexProvider from "./context/CryptoContex";
-import ConvertContexProvider from "./context/ConvertContext";
 import AuthContext from "./context/authContext";
 import ReducerContext from "./context/reducerContext";
 import Favorites from "./pages/Favorites";
@@ -34,32 +33,30 @@ function App() {
           }}
         >
           <CryptoContexProvider>
-            <ConvertContexProvider>
-              <ReducerContext.Provider
-                value={{
-                  state: state,
-                  dispatch: dispatch,
-                }}
-              >
-                <Header />
-                <Suspense fallback={<p>Loading...</p>}>
-                  <Switch>
-                    <AuthenticatedRoute
-                      path="/profile"
-                      isAuthenticated={state.isAuthenticated}
-                      component={Profile}
-                    />
-                    <Route path="/details/:id" component={CryptoDetails} />
-                    <Route path="/favorites" component={Favorites} />
-                    {/* <Route path="/profile" component={Profile} /> */}
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/" exact component={CryptoList} />
-                    <Route component={NotFound} />
-                  </Switch>
-                </Suspense>
-              </ReducerContext.Provider>
-            </ConvertContexProvider>
+            <ReducerContext.Provider
+              value={{
+                state: state,
+                dispatch: dispatch,
+              }}
+            >
+              <Header />
+              <Suspense fallback={<p>Loading...</p>}>
+                <Switch>
+                  <AuthenticatedRoute
+                    path="/profile"
+                    isAuthenticated={state.isAuthenticated}
+                    component={Profile}
+                  />
+                  <Route path="/details/:id" component={CryptoDetails} />
+                  <Route path="/favorites" component={Favorites} />
+                  {/* <Route path="/profile" component={Profile} /> */}
+                  <Route path="/login" component={Login} />
+                  <Route path="/register" component={Register} />
+                  <Route path="/" exact component={CryptoList} />
+                  <Route component={NotFound} />
+                </Switch>
+              </Suspense>
+            </ReducerContext.Provider>
           </CryptoContexProvider>
         </AuthContext.Provider>
         <Footer />
