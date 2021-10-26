@@ -63,7 +63,7 @@ const Register = () => {
         {error ? (
           <div className="alert alert-danger fw-bold">{error}</div>
         ) : null}
-        <div className="col-2 form-group mt-3">
+        <div className="col-md-3 col-lg-2 form-group mt-3">
           <label>Email</label>
           <input
             type="email"
@@ -72,7 +72,7 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="col-2 form-group mt-3">
+        <div className="col-md-3 col-lg-2 form-group mt-3">
           <label>Password</label>
           <input
             type="password"

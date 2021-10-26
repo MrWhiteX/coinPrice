@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { fetchCrypto } from "../components/CryptoList/Data/CryptoApi";
+// import { fetchCrypto } from "../components/CryptoList/Data/CryptoApi";
 
 export const CryptoContex = createContext();
 
@@ -17,32 +17,32 @@ function CryptoContexProvider({ children }) {
     getFavorites();
   }, [crypto]);
 
-  useEffect(() => {
-    fetchCrypto().then((data) => {
-      setCrypto(data);
-      setcryptoCopy(data);
-      setLoading(true);
-    });
+  // useEffect(() => {
+  //   fetchCrypto().then((data) => {
+  //     setCrypto(data);
+  //     setcryptoCopy(data);
+  //     setLoading(true);
+  //   });
 
-    const intervalID = setInterval(() => {
-      fetchCrypto().then((data) => {
-        setCrypto(Object.values(data));
-      });
-    }, 114000);
+  //   const intervalID = setInterval(() => {
+  //     fetchCrypto().then((data) => {
+  //       setCrypto(Object.values(data));
+  //     });
+  //   }, 114000);
 
-    return () => clearInterval(intervalID);
-  }, []);
+  //   return () => clearInterval(intervalID);
+  // }, []);
 
-  const searchHandler = (term) => {
-    const filtredCrypto = [...cryptoCopy].filter(
-      (x) =>
-        x.symbol.toLowerCase().includes(term.toLowerCase()) ||
-        x.name.toLowerCase().includes(term.toLowerCase())
-    );
-    setCrypto(filtredCrypto);
-    setIsSearchTerm(true);
-    setCurrentPage(1);
-  };
+  // const searchHandler = (term) => {
+  //   const filtredCrypto = [...cryptoCopy].filter(
+  //     (x) =>
+  //       x.symbol.toLowerCase().includes(term.toLowerCase()) ||
+  //       x.name.toLowerCase().includes(term.toLowerCase())
+  //   );
+  //   setCrypto(filtredCrypto);
+  //   setIsSearchTerm(true);
+  //   setCurrentPage(1);
+  // };
 
   const top10Handler = () => {
     setCrypto(cryptoCopy);

@@ -1,12 +1,42 @@
-import { useContext } from "react";
-import { ConvertContex } from "../../context/ConvertContext";
+import { useEffect } from "react";
+import { currencyAxios } from "../../axios";
+import { useDispatch } from "react-redux";
+import {
+  currency,
+  getCurrency,
+  setActualCurrency,
+} from "../../store/cryptoSlice";
+import { useSelector } from "react-redux";
 
 const CurrencyConventer = () => {
-  const { changeCurrency } = useContext(ConvertContex);
+  const dispatch = useDispatch();
 
   const changeCurrencyHandler = (e) => {
-    changeCurrency(e);
+    dispatch(setActualCurrency(e.target.value));
   };
+
+  const currencyValue = useSelector(getCurrency);
+
+  useEffect(() => {
+    const fetchCurrency = async () => {
+      try {
+        const response = await currencyAxios.get("/c");
+
+        const usdValue = response.data[0].rates[0].ask.toFixed(2);
+        const eurValue = response.data[0].rates[3].ask.toFixed(2);
+        dispatch(
+          currency({
+            USD: usdValue,
+            EUR: eurValue,
+          })
+        );
+      } catch (ex) {
+        console.log(ex.response);
+      }
+    };
+
+    fetchCurrency();
+  }, []);
 
   return (
     <>

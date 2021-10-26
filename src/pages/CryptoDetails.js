@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
-import { ConvertContex } from "../context/ConvertContext";
+import React from "react";
 import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import useWebsiteTitle from "../hooks/useWebsiteTitle";
 import { useSelector } from "react-redux";
-import { getAllCrypto, getLoading } from "../store/cryptoSlice";
+import {
+  getActualCurrency,
+  getAllCrypto,
+  getCurrency,
+  getLoading,
+} from "../store/cryptoSlice";
 
 const CryptoDetails = () => {
-  const { dataCurrency, actualCurrency } = useContext(ConvertContex);
+  const dataCurrency = useSelector(getCurrency);
+  const actualCurrency = useSelector(getActualCurrency);
   const params = useParams();
   const setTitle = useWebsiteTitle();
   const loading = useSelector(getLoading);

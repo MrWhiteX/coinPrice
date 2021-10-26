@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useRouteMatch, NavLink, Route, Switch } from "react-router-dom";
 import ProfileDetails from "./ProfileDetails";
 import AirDrop from "../Profile/AirDrop";
