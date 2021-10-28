@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header>
       <CurrencyConventer />
-      <div className="container pt-5">
+      <div className="container pt-2">
         <CryptoInfo />
         <Navbar />
       </div>

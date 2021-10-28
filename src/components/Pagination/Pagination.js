@@ -61,7 +61,7 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
 
   return (
     <>
-      <div className="row">
+      <div className="row mt-3">
         <div className="col-12 d-flex justify-content-center ">
           <div className="pagination mt-5 mb-5">
             <ul className="pagination">
@@ -102,7 +102,7 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
           </div>
         </div>
       </div>
-      <div style={{ height: "200px" }}>
+      <div style={{ height: "120px" }}>
         <div
           className={`d-none ${
             isSearchTerm ? `d-md-none` : `d-md-flex`

@@ -75,11 +75,8 @@ const CryptoRow = ({ crypto }) => {
     <div>
       {crypto.map((currency) => {
         return (
-          <div
-            key={currency.id}
-            className="row mb-4 mb-md-0 border-bottom border-bottom-sm-0"
-          >
-            <div className="col-1 col-sm-1 fw-bold">{currency.rank}</div>
+          <div key={currency.id} className="nice row mb-4 mb-md-0 ">
+            <div className="col-1 col-sm-1 ">{currency.rank}</div>
 
             <div className="col-6 col-sm-4 ">
               <span className="d-flex justify-content-start ">
@@ -94,7 +91,7 @@ const CryptoRow = ({ crypto }) => {
             </div>
 
             <div className="col-5 col-sm-2">
-              <span className="d-flex justify-content-end fw-bold">
+              <span className="d-flex justify-content-end">
                 {actualCurrency === "USD" ? (
                   <>
                     {currency.quotes.USD.price > 1
@@ -141,9 +138,7 @@ const CryptoRow = ({ crypto }) => {
                 </span>
               )}
 
-              <span className="fw-bold">
-                {currency.quotes.USD.percent_change_24h}
-              </span>
+              <span>{currency.quotes.USD.percent_change_24h}</span>
 
               <sup className="d-sm-none"> 24h</sup>
             </div>
@@ -165,9 +160,7 @@ const CryptoRow = ({ crypto }) => {
                 </span>
               )}
 
-              <span className="fw-bold">
-                {currency.quotes.USD.percent_change_7d}
-              </span>
+              <span>{currency.quotes.USD.percent_change_7d}</span>
 
               <sup className="d-sm-none"> 7d</sup>
             </div>
