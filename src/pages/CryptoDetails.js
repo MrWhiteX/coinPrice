@@ -113,8 +113,8 @@ const CryptoDetails = () => {
                   </div>
                 </div>
 
-                <div className="row mt-5">
-                  <div className="col-12 border-top text-start pt-3">
+                <div className="row mt-5 border-bottom border-top">
+                  <div className="col-4 pt-3">
                     <p className="fs-5">
                       <b>Rank </b> {singleCrypto.rank}
                     </p>
@@ -127,7 +127,9 @@ const CryptoDetails = () => {
                             singleCrypto.quotes.USD.ath_price * dataCurrency.USD
                           ).toFixed(2)} PLN`}
                     </p>
+                  </div>
 
+                  <div className="col-4 pt-3">
                     <p className="fs-5">
                       <b>ATH Date</b> {singleCrypto.quotes.USD.ath_date}
                     </p>
@@ -136,6 +138,9 @@ const CryptoDetails = () => {
                       <b>Circulating supply </b>{" "}
                       {singleCrypto.circulating_supply}
                     </p>
+                  </div>
+
+                  <div className="col-4 pt-3">
                     <p className="fs-5">
                       <b>Max supply </b> {singleCrypto.max_supply}
                     </p>
@@ -144,10 +149,6 @@ const CryptoDetails = () => {
                       <b>Total supply </b> {singleCrypto.total_supply}
                     </p>
                   </div>
-
-                  <div className="col-4"></div>
-
-                  <div className="col-4"></div>
                 </div>
               </div>
             );

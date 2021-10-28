@@ -40,7 +40,7 @@ const CurrencyConventer = () => {
 
   return (
     <>
-      <div className="container col-12">
+      <div className="container-fluid col-12">
         <div className="d-flex justify-content-end">
           <div className="mt-3">
             <select

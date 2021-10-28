@@ -1,6 +1,6 @@
 const CryptoListHeader = () => (
-  <div className="bg-dark">
-    <div className="row mb-1">
+  <div className="nice-dark">
+    <div className="row mb-2">
       <div className="col-1 col-sm-1">
         <span className="text-white fs-5 fw-bold">#</span>
       </div>

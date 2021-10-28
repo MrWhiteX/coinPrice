@@ -24,7 +24,7 @@ const CryptoList = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setLoading(true));
+    // dispatch(setLoading(true));
 
     const fetchCrypto = async () => {
       try {
@@ -87,9 +87,9 @@ const CryptoList = () => {
         </>
       )}
 
-      {crypto.length === 0 && loading && (
+      {crypto.length === 0 && !loading && (
         <span className="mt-5 fs-5 d-flex justify-content-center text-danger fw-bold ">
-          {/* No crypto here ;( */}
+          No crypto here ;(
         </span>
       )}
     </div>
