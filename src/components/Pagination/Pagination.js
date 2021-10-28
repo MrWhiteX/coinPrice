@@ -24,8 +24,6 @@ const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
     return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
   };
 
-  console.log(getPaginationGroup());
-
   useEffect(() => {
     if (isSearchTerm) {
       setPageLimit(Math.ceil(crypto.length / 10));
