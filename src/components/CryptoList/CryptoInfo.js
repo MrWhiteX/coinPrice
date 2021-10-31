@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { cryptoAxios } from "../../axios";
 import { useSelector } from "react-redux";
 import { getActualCurrency, getCurrency } from "../../store/cryptoSlice";
+import millify from "millify";
 
 const CryptoInfo = () => {
   const [info, setInfo] = useState("Wczytywanie danych");
@@ -41,24 +42,46 @@ const CryptoInfo = () => {
           <img src="../logo.jpeg" alt="" className="img-fluid"></img>
         </div>
         <div className="col-md-3  ">
-          <span className="">Market Cap</span>
-          <p className="fw-bold">
+          <span className="fw-bold">Market Cap </span>
+          <span className="">
             {actualCurrency === "USD"
-              ? `${info.market_cap_usd} $`
-              : `${info.market_cap_usd * dataCurrency.USD} PLN`}
-          </p>
+              ? `${millify(info.market_cap_usd ? info.market_cap_usd : 0, {
+                  units: ["B", "KB", "MB", "M", "T"],
+                  space: true,
+                })} USD`
+              : `${millify(
+                  info.market_cap_usd
+                    ? info.market_cap_usd * dataCurrency.USD
+                    : 0,
+                  {
+                    units: ["B", "KB", "MB", "M", "T"],
+                    space: true,
+                  }
+                )} PLN`}
+          </span>
         </div>
         <div className="col-md-3 ">
-          24h Vol:
-          <p className="fw-bold">
+          <span className="fw-bold"> 24h Vol </span>
+          <span className="">
             {actualCurrency === "USD"
-              ? `${info.volume_24h_usd} $`
-              : `${info.volume_24h_usd * dataCurrency.USD} PLN`}
-          </p>
+              ? `${millify(info.volume_24h_usd ? info.volume_24h_usd : 0, {
+                  units: ["B", "KB", "MB", "M", "T"],
+                  space: true,
+                })} USD`
+              : `${millify(
+                  info.volume_24h_usd
+                    ? info.volume_24h_usd * dataCurrency.USD
+                    : 0,
+                  {
+                    units: ["B", "KB", "MB", "M", "T"],
+                    space: true,
+                  }
+                )} PLN`}
+          </span>
         </div>
         <div className="col-md-3  ">
-          BTC Dominance:
-          <p className="fw-bold">{info.bitcoin_dominance_percentage} %</p>
+          <span className="fw-bold"> BTC Dominance </span>
+          <span className="">{info.bitcoin_dominance_percentage} %</span>
         </div>
       </div>
     </>

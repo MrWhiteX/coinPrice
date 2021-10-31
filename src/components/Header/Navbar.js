@@ -79,10 +79,7 @@ const Navbar = () => {
                   activeClassName=" active text-decoration-underline"
                   onClick={getFavoritesFn}
                 >
-                  Favourites{" "}
-                  <sup>
-                    <b>beta</b>
-                  </sup>
+                  Favourites
                 </NavLink>
               </li>
 
