@@ -45,15 +45,10 @@ const CryptoInfo = () => {
           <span className="fw-bold">Market Cap </span>
           <span className="">
             {actualCurrency === "USD"
-              ? `${millify(
-                  info.market_cap_usd
-                    ? info.market_cap_usd * dataCurrency.USD
-                    : 0,
-                  {
-                    units: ["B", "KB", "MB", "M", "T"],
-                    space: true,
-                  }
-                )} USD`
+              ? `${millify(info.market_cap_usd ? info.market_cap_usd : 0, {
+                  units: ["B", "KB", "MB", "M", "T"],
+                  space: true,
+                })} USD`
               : `${millify(
                   info.market_cap_usd
                     ? info.market_cap_usd * dataCurrency.USD

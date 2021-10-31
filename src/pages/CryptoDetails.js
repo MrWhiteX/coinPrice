@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import useWebsiteTitle from "../hooks/useWebsiteTitle";
 import { useSelector } from "react-redux";
+import millify from "millify";
+
 import {
   getActualCurrency,
   getAllCrypto,
@@ -38,7 +40,13 @@ const CryptoDetails = () => {
                       <b>{singleCrypto.name}</b> ({singleCrypto.symbol})
                       <b className="ms-2">
                         {actualCurrency === "USD"
-                          ? `${singleCrypto.quotes.USD.price.toFixed(2)} USD`
+                          ? `${
+                              singleCrypto.quotes.USD.price > 1
+                                ? singleCrypto.quotes.USD.price.toFixed(2)
+                                : singleCrypto.quotes.USD.price < 0.0001
+                                ? singleCrypto.quotes.USD.price.toFixed(8)
+                                : singleCrypto.quotes.USD.price.toFixed(4)
+                            } USD`
                           : `${(
                               singleCrypto.quotes.USD.price * dataCurrency.USD
                             ).toFixed(2)} PLN`}
@@ -122,10 +130,10 @@ const CryptoDetails = () => {
                     <p className="fs-5">
                       <b>ATH Price </b>{" "}
                       {actualCurrency === "USD"
-                        ? `${singleCrypto.quotes.USD.ath_price.toFixed(2)} USD `
-                        : `${(
+                        ? `${singleCrypto.quotes.USD.ath_price} USD `
+                        : `${
                             singleCrypto.quotes.USD.ath_price * dataCurrency.USD
-                          ).toFixed(2)} PLN`}
+                          } PLN`}
                     </p>
                   </div>
 
@@ -135,18 +143,43 @@ const CryptoDetails = () => {
                     </p>
 
                     <p className="fs-5">
-                      <b>Circulating supply </b>{" "}
-                      {singleCrypto.circulating_supply}
+                      <b>Circulating supply </b>
+
+                      {millify(
+                        singleCrypto.circulating_supply
+                          ? singleCrypto.circulating_supply
+                          : 0,
+                        {
+                          units: ["B", "KB", "M", "B", "T"],
+                          space: true,
+                        }
+                      )}
                     </p>
                   </div>
 
                   <div className="col-4 pt-3">
                     <p className="fs-5">
-                      <b>Max supply </b> {singleCrypto.max_supply}
+                      <b>Max supply </b>
+                      {millify(
+                        singleCrypto.max_supply ? singleCrypto.max_supply : 0,
+                        {
+                          units: ["B", "KB", "M", "B", "T"],
+                          space: true,
+                        }
+                      )}
                     </p>
 
                     <p className="fs-5">
-                      <b>Total supply </b> {singleCrypto.total_supply}
+                      <b>Total supply </b>
+                      {millify(
+                        singleCrypto.total_supply
+                          ? singleCrypto.total_supply
+                          : 0,
+                        {
+                          units: ["B", "KB", "M", "B", "T"],
+                          space: true,
+                        }
+                      )}
                     </p>
                   </div>
                 </div>

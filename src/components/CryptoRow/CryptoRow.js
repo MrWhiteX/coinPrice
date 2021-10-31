@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -91,7 +91,7 @@ const CryptoRow = ({ crypto }) => {
             </div>
 
             <div className="col-5 col-sm-2">
-              <span className="d-flex justify-content-end">
+              <span className="d-flex justify-content-end fw-bold">
                 {actualCurrency === "USD" ? (
                   <>
                     {currency.quotes.USD.price > 1
@@ -117,7 +117,7 @@ const CryptoRow = ({ crypto }) => {
                   </>
                 ) : null}
 
-                <span className="ms-2">{actualCurrency}</span>
+                <span className="ms-2 fw-light">{actualCurrency}</span>
               </span>
             </div>
 
@@ -138,7 +138,15 @@ const CryptoRow = ({ crypto }) => {
                 </span>
               )}
 
-              <span>{currency.quotes.USD.percent_change_24h}</span>
+              {currency.quotes.USD.percent_change_24h < 0 ? (
+                <span className="fw-bold" style={{ color: "red" }}>
+                  {currency.quotes.USD.percent_change_24h}
+                </span>
+              ) : (
+                <span className="fw-bold" style={{ color: "green" }}>
+                  {currency.quotes.USD.percent_change_24h}
+                </span>
+              )}
 
               <sup className="d-sm-none"> 24h</sup>
             </div>
@@ -160,7 +168,15 @@ const CryptoRow = ({ crypto }) => {
                 </span>
               )}
 
-              <span>{currency.quotes.USD.percent_change_7d}</span>
+              {currency.quotes.USD.percent_change_7d < 0 ? (
+                <span className="fw-bold" style={{ color: "red" }}>
+                  {currency.quotes.USD.percent_change_7d}
+                </span>
+              ) : (
+                <span className="fw-bold" style={{ color: "green" }}>
+                  {currency.quotes.USD.percent_change_7d}
+                </span>
+              )}
 
               <sup className="d-sm-none"> 7d</sup>
             </div>
