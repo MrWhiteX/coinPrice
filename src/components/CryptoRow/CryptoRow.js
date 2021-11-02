@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
@@ -31,6 +31,7 @@ const CryptoRow = ({ crypto }) => {
       });
     }
   }
+
   getIdFromLocalStorage();
 
   function checkIdAlreadyExist(currency) {

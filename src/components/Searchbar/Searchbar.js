@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
-  addCrypto,
+  addSearchedCrypto,
   currentPaginationPage,
   getCryptoCopy,
   isSearchTerm,
 } from "../../store/cryptoSlice";
+import { Link } from "react-router-dom";
 
 const Searchbar = () => {
   const [term, setTerm] = useState("");
@@ -28,7 +29,7 @@ const Searchbar = () => {
         x.symbol.toLowerCase().includes(term.toLowerCase()) ||
         x.name.toLowerCase().includes(term.toLowerCase())
     );
-    dispatch(addCrypto(filtredCrypto));
+    dispatch(addSearchedCrypto(filtredCrypto));
     dispatch(isSearchTerm(true));
     dispatch(currentPaginationPage(1));
   };
@@ -45,9 +46,9 @@ const Searchbar = () => {
         aria-label="Search"
       />
 
-      <button className="btn btn-outline-primary" onClick={search}>
+      <Link className="btn btn-primary" to="/search" onClick={search}>
         Search
-      </button>
+      </Link>
     </div>
   );
 };
