@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   crypto: [],
+  searchedCrypto: [],
   copyCrypto: [],
   loading: true,
   isSearchTerm: false,
@@ -20,6 +21,9 @@ const cryptoSlice = createSlice({
   reducers: {
     addCrypto: (state, { payload }) => {
       state.crypto = payload;
+    },
+    addSearchedCrypto: (state, { payload }) => {
+      state.searchedCrypto = payload;
     },
     copyCrypto: (state, { payload }) => {
       state.copyCrypto = payload;
@@ -48,6 +52,7 @@ const cryptoSlice = createSlice({
 
 export const {
   addCrypto,
+  addSearchedCrypto,
   copyCrypto,
   setLoading,
   isSearchTerm,
@@ -57,6 +62,7 @@ export const {
   setActualCurrency,
 } = cryptoSlice.actions;
 export const getAllCrypto = (state) => state.crypto.crypto;
+export const getSearchedCrypto = (state) => state.crypto.searchedCrypto;
 export const getCryptoCopy = (state) => state.crypto.copyCrypto;
 export const getLoading = (state) => state.crypto.loading;
 export const getIsSearchTerm = (state) => state.crypto.isSearchTerm;
