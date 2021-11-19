@@ -72,16 +72,18 @@ const Navbar = () => {
                   Top 10
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/favorites"
-                  className="nav-link"
-                  activeClassName=" active text-decoration-underline"
-                  onClick={getFavoritesFn}
-                >
-                  Favourites
-                </NavLink>
-              </li>
+              {auth ? (
+                <li className="nav-item">
+                  <NavLink
+                    to="/favorites"
+                    className="nav-link"
+                    activeClassName=" active text-decoration-underline"
+                    onClick={getFavoritesFn}
+                  >
+                    Favourites
+                  </NavLink>
+                </li>
+              ) : null}
 
               {auth ? (
                 <>
