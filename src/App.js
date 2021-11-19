@@ -86,9 +86,12 @@ function App() {
                     isAuthenticated={state.isAuthenticated}
                     component={Profile}
                   />
+                  <AuthenticatedRoute
+                    path="/favorites"
+                    isAuthenticated={state.isAuthenticated}
+                    component={Favorites}
+                  />
                   <Route path="/details/:id" component={CryptoDetails} />
-                  <Route path="/favorites" component={Favorites} />
-                  {/* <Route path="/profile" component={Profile} /> */}
                   <Route path="/login" component={Login} />
                   <Route path="/register" component={Register} />
                   <Route path="/" exact component={CryptoList} />

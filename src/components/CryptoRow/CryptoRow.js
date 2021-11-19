@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -7,69 +7,73 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import {
   getActualCurrency,
+  getCryptoFavId,
   getCurrency,
   getReloadComponentValue,
-  reloadComponent,
+  setCryptoFavId,
 } from "../../store/cryptoSlice";
 import { useSelector } from "react-redux";
+import { userAxios } from "../../axios";
+import useAuth from "../../hooks/useAuth";
+import { objectArrayWithId } from "../../helpers/object";
 
 const CryptoRow = ({ crypto }) => {
-  const [isFav, setIsFav] = useState(true);
-  const idCryptoFav = [];
+  const [isFav, setIsFav] = useState(false);
+  const [favCrypto, setFavCrypto] = useState([]);
+  const [auth] = useAuth();
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const dataCurrency = useSelector(getCurrency);
   const actualCurrency = useSelector(getActualCurrency);
   const reloadComponentValue = useSelector(getReloadComponentValue);
+  const idCryptoFav = useSelector(getCryptoFavId);
 
-  const localData = JSON.parse(localStorage.getItem("favourite"));
+  useEffect(() => {
+    const fetchFavCrypto = async () => {
+      try {
+        const res = await userAxios.get(`/favourites.json`);
 
-  function getIdFromLocalStorage() {
-    if (localData != null) {
-      localData.map((item) => {
-        idCryptoFav.push(item.id);
-      });
+        const newFav = objectArrayWithId(res.data).filter(
+          (fav) => fav.user_id === auth.userId
+        );
+        dispatch(setCryptoFavId(newFav.map((el) => el.currency.id)));
+        setFavCrypto(newFav);
+      } catch (ex) {
+        console.log(ex.response);
+      }
+    };
+    fetchFavCrypto();
+  }, [isFav]);
+
+  const handleFavouriteClick = async (currency) => {
+    if (!auth) {
+      history.push("/login");
     }
-  }
 
-  getIdFromLocalStorage();
-
-  function checkIdAlreadyExist(currency) {
-    if (idCryptoFav.includes(currency.id)) {
-      const indx = idCryptoFav.indexOf(currency.id);
-      localData.splice(indx, 1);
-      localStorage.setItem("favourite", JSON.stringify(localData));
-    }
-  }
-
-  const handleFavouriteClick = (currency, index) => {
-    setIsFav(!isFav);
-
-    const saveCurrencyToLocalStorage = currency;
-    let dataFromLocalStorage = [];
-
-    if (localStorage.getItem("favourite") != null) {
-      dataFromLocalStorage = JSON.parse(localStorage.getItem("favourite"));
-      const getCryptoId = dataFromLocalStorage.map((idcrypto) => {
-        return idcrypto.id;
-      });
-
-      if (
-        Object.values(getCryptoId).indexOf(saveCurrencyToLocalStorage.id) > -1
-      ) {
-        console.log("has test1");
-        checkIdAlreadyExist(currency);
-        dispatch(reloadComponent(!reloadComponentValue));
-      } else {
-        console.log("moge dodac");
-        dataFromLocalStorage.push(saveCurrencyToLocalStorage);
-        localStorage.setItem("favourite", JSON.stringify(dataFromLocalStorage));
+    if (!idCryptoFav.includes(currency.id)) {
+      try {
+        const res = await userAxios.post(`/favourites.json`, {
+          currency,
+          user_id: auth.userId,
+        });
+        setIsFav(!isFav);
+      } catch (ex) {
+        console.log(ex.response);
       }
     } else {
-      console.log("else");
-      dataFromLocalStorage.push(saveCurrencyToLocalStorage);
-      localStorage.setItem("favourite", JSON.stringify(dataFromLocalStorage));
     }
+    const testmap2 = favCrypto.map(async (el) => {
+      if (el.currency.id === currency.id) {
+        try {
+          const res = await userAxios.delete(`/favourites/${el.id}.json`);
+          setIsFav(!isFav);
+        } catch (ex) {
+          console.log(ex.response);
+        }
+      }
+    });
   };
 
   return (
