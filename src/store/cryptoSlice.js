@@ -13,7 +13,7 @@ const initialState = {
     EUR: 0,
   },
   actualCurrency: "USD",
-  cryptoFavId: [],
+  cryptoFav: [],
 };
 
 const cryptoSlice = createSlice({
@@ -47,8 +47,8 @@ const cryptoSlice = createSlice({
     setActualCurrency: (state, { payload }) => {
       state.actualCurrency = payload;
     },
-    setCryptoFavId: (state, { payload }) => {
-      state.cryptoFavId = payload;
+    setCryptoFav: (state, { payload }) => {
+      state.cryptoFav = payload;
     },
   },
   // extraReducers: {},
@@ -64,7 +64,7 @@ export const {
   reloadComponent,
   currency,
   setActualCurrency,
-  setCryptoFavId,
+  setCryptoFav,
 } = cryptoSlice.actions;
 export const getAllCrypto = (state) => state.crypto.crypto;
 export const getSearchedCrypto = (state) => state.crypto.searchedCrypto;
@@ -76,5 +76,5 @@ export const getCurrentPaginationPage = (state) =>
 export const getReloadComponentValue = (state) => state.crypto.reloadComponent;
 export const getCurrency = (state) => state.crypto.dataCurrency;
 export const getActualCurrency = (state) => state.crypto.actualCurrency;
-export const getCryptoFavId = (state) => state.crypto.cryptoFavId;
+export const getCryptoFav = (state) => state.crypto.cryptoFav;
 export default cryptoSlice.reducer;

@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { CryptoContex } from "../../context/CryptoContex";
 import Searchbar from "../Searchbar/Searchbar";
 import { Link, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -18,7 +17,6 @@ const Navbar = () => {
   const [auth, setAuth] = useAuth();
   const setTitle = useWebsiteTitle();
   const location = useLocation();
-  const { getFavorites } = useContext(CryptoContex);
 
   const dispatch = useDispatch();
   const cryptoCopy = useSelector(getCryptoCopy);
@@ -28,10 +26,6 @@ const Navbar = () => {
     dispatch(addCrypto(cryptoCopy));
     dispatch(currentPaginationPage(1));
     dispatch(isSearchTerm(false));
-  };
-
-  const getFavoritesFn = () => {
-    getFavorites();
   };
 
   const logout = (e) => {
@@ -78,7 +72,6 @@ const Navbar = () => {
                     to="/favorites"
                     className="nav-link"
                     activeClassName=" active text-decoration-underline"
-                    onClick={getFavoritesFn}
                   >
                     Favourites
                   </NavLink>

@@ -15,10 +15,11 @@ const Searchbar = () => {
 
   const dispatch = useDispatch();
 
-  const search = (e) => {
+  const search = () => {
     if (term === "") {
     } else {
       searchHandler(term);
+
       setTerm("");
     }
   };
@@ -46,7 +47,7 @@ const Searchbar = () => {
         aria-label="Search"
       />
 
-      <Link className="btn btn-primary" to="/search" onClick={search}>
+      <Link className="btn btn-primary" to={`/search`} onClick={search}>
         Search
       </Link>
     </div>
