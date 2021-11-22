@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -7,10 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import {
   getActualCurrency,
-  getCryptoFavId,
   getCurrency,
-  getReloadComponentValue,
-  setCryptoFavId,
+  setCryptoFav,
 } from "../../store/cryptoSlice";
 import { useSelector } from "react-redux";
 import { userAxios } from "../../axios";
@@ -20,6 +18,7 @@ import { objectArrayWithId } from "../../helpers/object";
 const CryptoRow = ({ crypto }) => {
   const [isFav, setIsFav] = useState(false);
   const [favCrypto, setFavCrypto] = useState([]);
+  const [favId, setfavId] = useState([]);
   const [auth] = useAuth();
 
   const history = useHistory();
@@ -27,8 +26,6 @@ const CryptoRow = ({ crypto }) => {
   const dispatch = useDispatch();
   const dataCurrency = useSelector(getCurrency);
   const actualCurrency = useSelector(getActualCurrency);
-  const reloadComponentValue = useSelector(getReloadComponentValue);
-  const idCryptoFav = useSelector(getCryptoFavId);
 
   useEffect(() => {
     const fetchFavCrypto = async () => {
@@ -38,7 +35,9 @@ const CryptoRow = ({ crypto }) => {
         const newFav = objectArrayWithId(res.data).filter(
           (fav) => fav.user_id === auth.userId
         );
-        dispatch(setCryptoFavId(newFav.map((el) => el.currency.id)));
+        dispatch(setCryptoFav(newFav.map((el) => el.currency)));
+
+        setfavId(newFav.map((el) => el.currency.id));
         setFavCrypto(newFav);
       } catch (ex) {
         console.log(ex.response);
@@ -52,7 +51,7 @@ const CryptoRow = ({ crypto }) => {
       history.push("/login");
     }
 
-    if (!idCryptoFav.includes(currency.id)) {
+    if (!favId.includes(currency.id)) {
       try {
         const res = await userAxios.post(`/favourites.json`, {
           currency,
@@ -64,7 +63,7 @@ const CryptoRow = ({ crypto }) => {
       }
     } else {
     }
-    const testmap2 = favCrypto.map(async (el) => {
+    const deleteFav = favCrypto.map(async (el) => {
       if (el.currency.id === currency.id) {
         try {
           const res = await userAxios.delete(`/favourites/${el.id}.json`);
@@ -189,7 +188,7 @@ const CryptoRow = ({ crypto }) => {
             <div className="offset-2 offset-sm-0 col-1 col-sm-1 d-flex justify-content-center align-items-center">
               <FontAwesomeIcon
                 className="text-danger"
-                icon={idCryptoFav.includes(currency.id) ? faStarSolid : faStar}
+                icon={favId.includes(currency.id) ? faStarSolid : faStar}
                 style={{ cursor: "pointer" }}
                 onClick={() => handleFavouriteClick(currency)}
               />

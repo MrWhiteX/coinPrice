@@ -11,20 +11,13 @@ import SearchPage from "./pages/SearchPage";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import AuthenticatedRoute from "./components/AuthenticatedRoute/AuthenticatedRoute";
-import CryptoContexProvider from "./context/CryptoContex";
 import AuthContext from "./context/authContext";
 import ReducerContext from "./context/reducerContext";
 import Favorites from "./pages/Favorites";
 import useWebsiteTitle from "./hooks/useWebsiteTitle";
 import { cryptoAxios } from "./axios";
 import { useDispatch } from "react-redux";
-import {
-  addCrypto,
-  copyCrypto,
-  getCurrentPaginationPage,
-  getIsSearchTerm,
-  setLoading,
-} from "./store/cryptoSlice";
+import { addCrypto, copyCrypto, setLoading } from "./store/cryptoSlice";
 
 const Profile = lazy(() => import("./pages/Profile/Profile"));
 
@@ -71,36 +64,34 @@ function App() {
             logout: () => dispatch({ type: "logout" }),
           }}
         >
-          <CryptoContexProvider>
-            <ReducerContext.Provider
-              value={{
-                state: state,
-                dispatch: dispatch,
-              }}
-            >
-              <Header />
-              <Suspense fallback={<p>Loading...</p>}>
-                <Switch>
-                  <AuthenticatedRoute
-                    path="/profile"
-                    isAuthenticated={state.isAuthenticated}
-                    component={Profile}
-                  />
-                  <AuthenticatedRoute
-                    path="/favorites"
-                    isAuthenticated={state.isAuthenticated}
-                    component={Favorites}
-                  />
-                  <Route path="/details/:id" component={CryptoDetails} />
-                  <Route path="/login" component={Login} />
-                  <Route path="/register" component={Register} />
-                  <Route path="/" exact component={CryptoList} />
-                  <Route path="/search" exact component={SearchPage} />
-                  <Route component={NotFound} />
-                </Switch>
-              </Suspense>
-            </ReducerContext.Provider>
-          </CryptoContexProvider>
+          <ReducerContext.Provider
+            value={{
+              state: state,
+              dispatch: dispatch,
+            }}
+          >
+            <Header />
+            <Suspense fallback={<p>Loading...</p>}>
+              <Switch>
+                <AuthenticatedRoute
+                  path="/profile"
+                  isAuthenticated={state.isAuthenticated}
+                  component={Profile}
+                />
+                <AuthenticatedRoute
+                  path="/favorites"
+                  isAuthenticated={state.isAuthenticated}
+                  component={Favorites}
+                />
+                <Route path="/details/:id" component={CryptoDetails} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route path="/" exact component={CryptoList} />
+                <Route path="/search" exact component={SearchPage} />
+                <Route component={NotFound} />
+              </Switch>
+            </Suspense>
+          </ReducerContext.Provider>
         </AuthContext.Provider>
         <Footer />
       </Router>
