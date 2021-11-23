@@ -83,11 +83,12 @@ function App() {
                   isAuthenticated={state.isAuthenticated}
                   component={Favorites}
                 />
+                <Route path="/search/:id" component={SearchPage} />
                 <Route path="/details/:id" component={CryptoDetails} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/" exact component={CryptoList} />
-                <Route path="/search" exact component={SearchPage} />
+
                 <Route component={NotFound} />
               </Switch>
             </Suspense>
