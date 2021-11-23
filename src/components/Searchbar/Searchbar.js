@@ -7,15 +7,24 @@ import {
   getCryptoCopy,
   isSearchTerm,
 } from "../../store/cryptoSlice";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Searchbar = () => {
   const [term, setTerm] = useState("");
   const cryptoCopy = useSelector(getCryptoCopy);
 
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
-  const search = () => {
+  const onKeyDownHandler = (e) => {
+    if (e.key === "Enter") {
+      search();
+      history.push(`/search/${term}`);
+    }
+  };
+
+  const search = (e) => {
     if (term === "") {
     } else {
       searchHandler(term);
@@ -40,14 +49,19 @@ const Searchbar = () => {
       <input
         value={term}
         onChange={(e) => setTerm(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && search()}
+        onKeyDown={(e) => onKeyDownHandler(e)}
+        // onKeyDown={(e) => e.key === "Enter" && search()}
         type="text"
         className="form-control me-2"
         placeholder="Search"
         aria-label="Search"
       />
 
-      <Link className="btn btn-primary" to={`/search`} onClick={search}>
+      <Link
+        className={`btn btn-primary ${term === "" ? `disabled` : ``}`}
+        to={`/search/${term}`}
+        onClick={search}
+      >
         Search
       </Link>
     </div>
