@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+// eslint-disable-next-line array-callback-return
 import { useEffect, useState } from "react";
 import CryptoListHeader from "../components/CryptoList/CryptoListHeader";
 import CryptoRow from "../components/CryptoRow/CryptoRow";
