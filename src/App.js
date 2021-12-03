@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
 import { useReducer, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";

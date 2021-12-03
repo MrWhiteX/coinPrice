@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useRouteMatch, NavLink, Route, Switch } from "react-router-dom";
 import ProfileDetails from "./ProfileDetails";
-import AirDrop from "../Profile/AirDrop";
+import CryptoCalculator from "../Profile/CryptoCalculator";
 import NotFound from "../NotFound/NotFound";
 import useWebsiteTitle from "../../hooks/useWebsiteTitle";
 
@@ -21,17 +21,12 @@ const Profile = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to={`${url}/airdrop`}>
-                Airdrop
+              <NavLink className="nav-link" to={`${url}/calc`}>
+                Calculator
               </NavLink>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-              >
+              <a className="nav-link disabled" href="#" aria-disabled="true">
                 Disabled
               </a>
             </li>
@@ -44,7 +39,7 @@ const Profile = () => {
             content.
           </p> */}
           <Switch>
-            <Route path={`${path}/airdrop`} exact component={AirDrop} />
+            <Route path={`${path}/calc`} exact component={CryptoCalculator} />
             <Route path={`${path}`} exact component={ProfileDetails} />
             <Route component={NotFound} />
           </Switch>

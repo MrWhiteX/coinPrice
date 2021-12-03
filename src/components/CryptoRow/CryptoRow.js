@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -39,12 +41,10 @@ const CryptoRow = ({ crypto }) => {
 
         setfavId(newFav.map((el) => el.currency.id));
         setFavCrypto(newFav);
-      } catch (ex) {
-        console.log(ex.response);
-      }
+      } catch (ex) {}
     };
     fetchFavCrypto();
-  }, [isFav]);
+  }, []);
 
   const handleFavouriteClick = async (currency) => {
     if (!auth) {

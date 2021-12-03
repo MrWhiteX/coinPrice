@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from "react";
 import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

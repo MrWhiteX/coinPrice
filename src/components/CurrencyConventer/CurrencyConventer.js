@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { currencyAxios } from "../../axios";
 import { useDispatch } from "react-redux";

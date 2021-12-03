@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,7 +10,7 @@ import {
 } from "../../store/cryptoSlice";
 
 const Pagination = ({ cryptoPerPage, changeCryptoPerPage }) => {
-  const [changeRows, setChangeRows] = useState(20);
+  const [, setChangeRows] = useState(20);
   const [pageLimit, setPageLimit] = useState(5);
 
   const dispatch = useDispatch();
